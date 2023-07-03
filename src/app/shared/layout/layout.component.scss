@@ -1,8 +1,15 @@
+@import "src/assets/styles/colors.scss";
+
 .nav-bar-container {
   display: flex;
   width: 100%;
   justify-content: space-between;
   padding: 0 50px;
+  span {
+    color: $main;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
 
   .links {
     display: flex;

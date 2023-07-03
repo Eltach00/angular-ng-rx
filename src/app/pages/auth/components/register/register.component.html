@@ -2,16 +2,12 @@
   <h1>Sign up</h1>
   <a routerLink="/auth">Have an account?</a>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <input type="text" id="username" formControlName="username" placeholder="Username">
 
-    <div>
-      <input type="text" id="username" formControlName="username" placeholder="Username">
-    </div>
-    <div>
-      <input type="text" id="email" formControlName="email" placeholder="Email">
-    </div>
-    <div>
-      <input type="password" id="password" formControlName="password" placeholder="Password">
-    </div>
+    <input type="text" id="email" formControlName="email" placeholder="Email">
+
+    <input type="password" id="password" formControlName="password" placeholder="Password">
+
     <button type="submit">Submit</button>
   </form>
 </div>
