@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  a {
+    margin-bottom: 20px;
+    color: #5cb85c;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      color: #83d383;
+    }
+  }
+  form {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+
+    div {
+      input {
+        display: block;
+        margin: 0 auto;
+        color: #55595c;
+        width: 100%;
+        padding: 16px 25px;
+        font-size: 1.25rem;
+        border-radius: 0.3rem;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        margin-bottom: 5px;
+        &.ng-invalid.ng-touched {
+          border: 1px red solid;
+        }
+      }
+      width: 100%;
+    }
+    button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1.25rem;
+      border-radius: 0.3rem;
+      color: #fff;
+      background-color: $main;
+      border: 1px solid $main;
+      align-self: flex-end;
+      &:disabled {
+        background-color: rgb(139, 212, 139);
+        border: 1px solid rgb(139, 212, 139);
+        cursor: not-allowed;
+      }
+      &:hover {
+        background-color: rgb(139, 212, 139);
+        border: 1px solid rgb(139, 212, 139);
+      }
+    }
+    p {
+      color: red;
+      margin: 0;
+    }
+    @media screen and (max-width: 1500px) {
+      width: 40%;
+    }
+    @media screen and (max-width: 1150px) {
+      width: 50%;
+    }
+    @media screen and (max-width: 900px) {
+      width: 60%;
+    }
+    @media screen and (max-width: 715px) {
+      width: 80%;
+      div,
+      button {
+        font-size: 1rem;
+        input {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
