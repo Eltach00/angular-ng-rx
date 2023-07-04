@@ -47,14 +47,15 @@
       background-color: $main;
       border: 1px solid $main;
       align-self: flex-end;
+      &:hover {
+        background-color: rgb(139, 212, 139);
+        border: 1px solid rgb(139, 212, 139);
+        cursor: pointer;
+      }
       &:disabled {
         background-color: rgb(139, 212, 139);
         border: 1px solid rgb(139, 212, 139);
         cursor: not-allowed;
-      }
-      &:hover {
-        background-color: rgb(139, 212, 139);
-        border: 1px solid rgb(139, 212, 139);
       }
     }
     p {

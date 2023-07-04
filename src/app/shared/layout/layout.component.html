@@ -1,17 +1,22 @@
-<mat-toolbar>
-  <div class="nav-bar-container">
+<header>
+  <mat-toolbar color="accent">
+    <div class="nav-bar-container">
 
-    <span>My Blog</span>
+      <span>My Blog</span>
 
-    <div class="links">
-      <a routerLink="/">Home</a>
-      <a routerLink="/auth">Sign in</a>
-      <a routerLink="/register">Sign up</a>
+      <div class="links">
+        <a routerLink="/">Home</a>
+        <a routerLink="/auth">Sign in</a>
+        <a routerLink="/register">Sign up</a>
+      </div>
     </div>
-  </div>
-</mat-toolbar>
-<mat-toolbar class="footer">
+  </mat-toolbar>
+</header>
+<ng-content></ng-content>
+<footer>
+  <mat-toolbar color="primary">
 
-  <div>© {{date}}. An interactive learning project from</div>
+    <div>© {{date}}. An interactive learning project from</div>
 
-</mat-toolbar>
+  </mat-toolbar>
+</footer>

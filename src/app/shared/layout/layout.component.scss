@@ -1,10 +1,13 @@
 @import "src/assets/styles/colors.scss";
 
-.footer {
+header {
+  margin-bottom: 20px;
+}
+footer {
   position: fixed;
-  left: 0;
   bottom: 0;
   width: 100%;
+  margin-top: 20px;
   div {
     margin: 0 auto;
   }
@@ -16,8 +19,8 @@
   justify-content: space-between;
   padding: 0 50px;
   span {
-    color: $main;
-    font-size: 1.1rem;
+    color: white;
+    font-size: 1.2rem;
     font-weight: 600;
   }
 
@@ -26,9 +29,9 @@
     gap: 15px;
     a {
       text-decoration: none;
-      color: rgb(45, 45, 45);
+      color: white;
       &:hover {
-        color: rgb(204, 204, 204);
+        color: rgb(148, 148, 148);
       }
     }
   }
