@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,15 +8,16 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../auth.service';
 import { RegisterDto } from 'src/app/shared/models/register.dto';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { registerAction } from 'src/app/store/register.action';
+import { selectIsSubmiting } from 'src/app/store/submit.select';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   userName: FormControl = new FormControl('', Validators.required);
@@ -27,7 +29,7 @@ export class RegisterComponent {
     Validators.required,
     Validators.minLength(6),
   ]);
-  submitted = false;
+  isSubmitted$: Observable<boolean>;
   errors: string = '';
 
   constructor(
@@ -42,6 +44,10 @@ export class RegisterComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.isSubmitted$ = this.store.pipe(select(selectIsSubmiting));
+  }
+
   onSubmit() {
     this.errors = '';
     if (this.registerForm.invalid) {
@@ -49,8 +55,6 @@ export class RegisterComponent {
     }
     const data = new RegisterDto(this.registerForm.value);
     this.store.dispatch(registerAction(data));
-    this.submitted = true;
-    // this.authService.register(this.registerForm.value as RegisterDto);
-    this.submitted = false;
+    this.authService.register(data);
   }
 }

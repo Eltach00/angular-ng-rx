@@ -22,7 +22,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot([]),
+    StoreModule.forRoot({}),
     AuthModule,
     BrowserAnimationsModule,
     MatToolbarModule,

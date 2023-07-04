@@ -1,6 +1,7 @@
 <div class="container">
   <h1>Sign up</h1>
   <a routerLink="/auth">Have an account?</a>
+  <div class="error" *ngIf="errors">{{ errors }}</div>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div>
       <p *ngIf="userName.errors && userName.touched">*Username is required</p>
@@ -18,6 +19,6 @@
       <input type="password" id="password" formControlName="password" placeholder="Password">
     </div>
 
-    <button [disabled]="registerForm.invalid || submitted" type="submit">Submit</button>
+    <button [disabled]="registerForm.invalid || (isSubmitted$ | async)" type="submit">Submit</button>
   </form>
 </div>

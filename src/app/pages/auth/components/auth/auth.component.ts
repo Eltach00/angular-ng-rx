@@ -5,8 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../auth.service';
 import { AuthDto } from 'src/app/shared/models/auth.dto';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -40,9 +40,5 @@ export class AuthComponent {
     if (this.authForm.invalid) {
       return;
     }
-
-    this.submitted = true;
-    this.authService.auth(this.authForm.value as AuthDto);
-    this.submitted = false;
   }
 }
