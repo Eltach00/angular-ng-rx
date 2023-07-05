@@ -1,0 +1,44 @@
+.card {
+  border-bottom: 1px solid rgb(196, 196, 196);
+  margin-bottom: 10px;
+  min-width: 400px;
+  max-width: 1000px;
+  .card-header {
+    align-items: center;
+    .header-image {
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+    .like-btn {
+      position: absolute;
+      right: 20px;
+      color: white;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    margin-bottom: 10px;
+  }
+  mat-card-content {
+    margin-bottom: 5px;
+    .bodyTitle {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .description {
+      color: transparentize($color: #000000, $amount: 0.5);
+    }
+  }
+
+  .read-btn {
+    padding-left: 16px;
+    font-size: 0.8;
+    color: transparentize($color: #000000, $amount: 0.5);
+    &:hover {
+      color: #000;
+      cursor: pointer;
+    }
+  }
+}

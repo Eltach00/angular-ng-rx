@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -7,10 +8,13 @@ import { StateTestPageComponent } from './pages/state-test-page/state-test-page.
 import { AuthModule } from './pages/auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './shared/layout/layout.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { HomeComponent } from './pages/home/home.component';
-import { MatCardModule } from '@angular/material/card';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { FeedComponent } from './pages/home/components/feed/feed.component';
+import { PostComponent } from './pages/home/components/post/post.component';
+
+import { TagsComponent } from './pages/home/components/tags/tags.component';
+import { materialModules } from './shared/material-modules/material.modules';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StateTestPageComponent,
     LayoutComponent,
     HomeComponent,
+    FeedComponent,
+    PostComponent,
+    TagsComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,9 +32,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreModule.forRoot({}),
     AuthModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    HttpClientModule,
+    ...materialModules,
   ],
   providers: [],
   bootstrap: [AppComponent],

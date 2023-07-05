@@ -1,0 +1,13 @@
+<mat-card class="tags">
+  <mat-card-header class="card-header">
+    <mat-card-title> Popular tags
+    </mat-card-title>
+
+  </mat-card-header>
+  <mat-card-content>
+    <mat-chip-listbox (change)="onChange($event)" aria-label="Popular tags">
+      <mat-chip-option color="accent" *ngFor="let tag of tags">{{tag}}</mat-chip-option>
+    </mat-chip-listbox>
+  </mat-card-content>
+
+</mat-card>
