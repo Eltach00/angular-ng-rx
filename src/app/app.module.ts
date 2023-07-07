@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,8 @@ import { PostComponent } from './pages/home/components/post/post.component';
 
 import { TagsComponent } from './pages/home/components/tags/tags.component';
 import { materialModules } from './shared/material-modules/material.modules';
+import { MatSnackBarComponent } from './shared/mat-snack-bar/mat-snack-bar.component';
+import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { materialModules } from './shared/material-modules/material.modules';
     FeedComponent,
     PostComponent,
     TagsComponent,
+    MatSnackBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,13 @@ import { materialModules } from './shared/material-modules/material.modules';
     HttpClientModule,
     ...materialModules,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

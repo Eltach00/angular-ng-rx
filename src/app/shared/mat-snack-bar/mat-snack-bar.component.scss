@@ -1,0 +1,19 @@
+.snack-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  gap: 10px;
+
+  .message {
+    font-size: 1.1rem;
+  }
+
+  .close-btn {
+    button {
+      padding: 15px;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+  }
+}

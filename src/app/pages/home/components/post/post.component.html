@@ -3,7 +3,8 @@
     <div mat-card-avatar class="header-image"> <img [src]="post.author.image" alt=""></div>
     <mat-card-title>{{ post.author.username }}</mat-card-title>
     <mat-card-subtitle> {{ post.createdAt | date}} </mat-card-subtitle>
-    <button class="like-btn" mat-fab extended color="accent" aria-label="Example mini fab with a heart icon">
+    <button (click)="like()" class="like-btn" mat-fab extended color="accent"
+      aria-label="Example mini fab with a heart icon">
       <mat-icon color="primary">favorite</mat-icon>
       {{ post.favoritesCount }}
     </button>
@@ -12,7 +13,12 @@
     <h3 class="bodyTitle">{{ post.title }}</h3>
     <small class="description"> {{ post.description}} </small>
   </mat-card-content>
-  <mat-card-footer>
+  <mat-card-footer class="mat-footer">
     <small class="read-btn">Read more...</small>
+    <mat-chip-listbox aria-label="Dog selection">
+      <mat-chip *ngFor="let tag of post.tagList" color="primary" highlighted>
+        {{ tag }}
+      </mat-chip>
+    </mat-chip-listbox>
   </mat-card-footer>
 </mat-card>

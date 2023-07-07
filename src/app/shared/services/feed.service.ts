@@ -4,6 +4,7 @@ import { env } from 'src/app/environments/environment';
 import { Urls } from 'src/app/environments/url.enum';
 import { GlobalFeedResponse } from '../models/feeds/globalFeed.response';
 import { TagsResponse } from '../models/feeds/tags.response';
+import { FavoriteResponse } from '../models/feeds/favorite.response';
 
 @Injectable({
   providedIn: 'root',
@@ -11,16 +12,23 @@ import { TagsResponse } from '../models/feeds/tags.response';
 export class FeedService {
   constructor(private http: HttpClient) {}
   getGlobalFeed(param?: string) {
-    const params: any = { limit: 10, offset: 0 };
+    let params = new HttpParams().set('limit', 10).set('offset', 0);
     if (param) {
-      params.tag = param;
+      params = params.set('tag', param);
     }
-
     return this.http.get<GlobalFeedResponse>(env.baseUrl + Urls.globalFeed, {
       params,
     });
   }
+
   tags() {
     return this.http.get<TagsResponse>(env.baseUrl + Urls.tags);
+  }
+
+  favorite(slug: string) {
+    return this.http.post<FavoriteResponse>(
+      env.baseUrl + Urls.globalFeed + `/${slug}` + `/${Urls.favorite}`,
+      {}
+    );
   }
 }

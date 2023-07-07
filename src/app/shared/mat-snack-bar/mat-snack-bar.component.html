@@ -1,0 +1,8 @@
+<div class="snack-container">
+  <div matSnackBarLabel class="message">
+    Error: {{ data.message | titlecase }}
+  </div>
+  <div matSnackBarActions class="close-btn">
+    <button mat-button matSnackBarAction (click)="snackBarRef.dismiss()">Close</button>
+  </div>
+</div>
