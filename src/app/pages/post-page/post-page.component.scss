@@ -1,0 +1,81 @@
+@import "src/assets/styles/colors.scss";
+
+mat-card {
+  background-color: #333;
+  mat-card-header {
+    width: 75%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+  }
+}
+
+.title {
+  color: white;
+  font-size: 2.7rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    .img {
+      padding-top: 5px;
+      img {
+        border-radius: 100%;
+      }
+    }
+    .author {
+      .username {
+        color: white;
+        margin-bottom: -5px;
+      }
+      .createdAt {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    gap: 7px;
+    button {
+      display: flex;
+      align-items: center;
+      padding: 2px 7px;
+      background-color: inherit;
+      border-radius: 5px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .follow {
+      gap: 5px;
+      color: $grey;
+      border: 2px $grey solid;
+      span {
+        padding-top: 1px;
+      }
+      &:hover {
+        color: white;
+        background-color: $grey;
+      }
+    }
+    .favorite {
+      gap: 5px;
+      color: $main;
+      border: 2px $main solid;
+      &:hover {
+        color: white;
+        background-color: $main;
+      }
+    }
+  }
+}

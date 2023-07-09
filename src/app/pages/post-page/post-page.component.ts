@@ -13,7 +13,7 @@ import { FeedService } from 'src/app/shared/services/feed.service';
 export class PostPageComponent implements OnInit {
   post: GlobalArticle;
   comments: Comment[];
-
+  loading: boolean = true;
   constructor(
     private activateRoute: ActivatedRoute,
     private feedService: FeedService
@@ -32,6 +32,7 @@ export class PostPageComponent implements OnInit {
       .subscribe((data) => {
         this.post = data.post.article;
         this.comments = data.comment.comments;
+        this.loading = false;
       });
   }
 }
