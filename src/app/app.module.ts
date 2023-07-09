@@ -17,6 +17,7 @@ import { TagsComponent } from './pages/home/components/tags/tags.component';
 import { materialModules } from './shared/material-modules/material.modules';
 import { MatSnackBarComponent } from './shared/mat-snack-bar/mat-snack-bar.component';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
+import { PostPageComponent } from './pages/post-page/post-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
     PostComponent,
     TagsComponent,
     MatSnackBarComponent,
+    PostPageComponent,
   ],
   imports: [
     BrowserModule,

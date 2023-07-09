@@ -1,10 +1,10 @@
 import { Author } from './globalFeed.response';
 
 export interface FavoriteResponse {
-  article: Article;
+  article: ArticleFavorite;
 }
 
-export interface Article {
+export interface ArticleFavorite {
   id: number;
   slug: string;
   title: string;

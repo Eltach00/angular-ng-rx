@@ -5,6 +5,8 @@ import { Urls } from 'src/app/environments/url.enum';
 import { GlobalFeedResponse } from '../models/feeds/globalFeed.response';
 import { TagsResponse } from '../models/feeds/tags.response';
 import { FavoriteResponse } from '../models/feeds/favorite.response';
+import { ArticleResponse } from '../models/feeds/article.response';
+import { CommentResponse } from '../models/feeds/comment.response';
 
 @Injectable({
   providedIn: 'root',
@@ -27,8 +29,20 @@ export class FeedService {
 
   favorite(slug: string) {
     return this.http.post<FavoriteResponse>(
-      env.baseUrl + Urls.globalFeed + `/${slug}` + `/${Urls.favorite}`,
+      env.baseUrl + Urls.globalFeed + `/${slug}` + Urls.favorite,
       {}
+    );
+  }
+
+  getPost(slug: string) {
+    return this.http.get<ArticleResponse>(
+      env.baseUrl + Urls.globalFeed + `/${slug}`
+    );
+  }
+
+  getComments(slug: string) {
+    return this.http.get<CommentResponse>(
+      env.baseUrl + Urls.globalFeed + `/${slug}` + Urls.comments
     );
   }
 }
