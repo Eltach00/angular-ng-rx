@@ -15,7 +15,7 @@
   </mat-card-content>
   <mat-card-footer class="mat-footer">
     <small class="read-btn" (click)="navigateToPostPage()">Read more...</small>
-    <mat-chip-listbox aria-label="Dog selection">
+    <mat-chip-listbox aria-label="tags">
       <mat-chip *ngFor="let tag of post.tagList" color="primary" highlighted>
         {{ tag }}
       </mat-chip>

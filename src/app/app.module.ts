@@ -18,6 +18,7 @@ import { materialModules } from './shared/material-modules/material.modules';
 import { MatSnackBarComponent } from './shared/mat-snack-bar/mat-snack-bar.component';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { PostPageComponent } from './pages/post-page/post-page.component';
+import { HeaderCardComponent } from './pages/post-page/components/header-card/header-card.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PostPageComponent } from './pages/post-page/post-page.component';
     TagsComponent,
     MatSnackBarComponent,
     PostPageComponent,
+    HeaderCardComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,5 +9,5 @@
     </mat-tab>
     <mat-tab label="Feed">Content 2</mat-tab>
   </mat-tab-group>
-  <app-tags [tags]="tags" (tagsChanged)="changeTag($event)"></app-tags>
+  <app-tags *ngIf="!loading" [tags]="tags" (tagsChanged)="changeTag($event)"></app-tags>
 </div>

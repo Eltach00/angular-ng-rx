@@ -12,17 +12,3 @@
 mat-tab-group {
   font-size: 1.2rem;
 }
-
-.loading {
-  margin: 0 auto;
-  text-align: center;
-  span {
-    display: block;
-    font-weight: 500;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  }
-  mat-spinner {
-    margin: 0 auto;
-  }
-}

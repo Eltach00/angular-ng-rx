@@ -1,27 +1,15 @@
-<mat-card *ngIf="!loading">
-  <mat-card-header>
-    <mat-card-title class="title"> {{post.title }} </mat-card-title>
-    <mat-card-subtitle class="subtitle">
-      <div class="avatar">
-        <div class="img">
-          <img [src]="post.author.image" alt="">
-        </div>
-        <div class="author">
-          <p class="username">{{ post.author.username }}</p>
-          <p class="createdAt">{{ post.createdAt | date: 'longDate'}}</p>
-        </div>
-      </div>
-      <div class="buttons">
-        <button class="follow"> <mat-icon inline>star_border</mat-icon>
-          <span>
-            Follow {{ post.author.username}}
-          </span>
-        </button>
-        <button class="favorite"> <mat-icon inline>favorite_border</mat-icon> <span> Favorite Post
-            ({{post.favoritesCount}})</span>
-        </button>
-      </div>
-    </mat-card-subtitle>
-    <mat-card-actions></mat-card-actions>
-  </mat-card-header>
-</mat-card>
+<div *ngIf="loading" class="loading"> <span> Loading articles...</span> <mat-spinner color="accent"></mat-spinner>
+</div>
+<ng-container *ngIf="!loading">
+  <app-header-card [post]="post"></app-header-card>
+
+  <div class="container">
+    <p class="body-text"> {{post.body}} </p>
+    <mat-chip-listbox aria-label="tags">
+      <mat-chip *ngFor="let tag of post.tagList" color="dark-white" highlighted>
+        {{ tag }}
+      </mat-chip>
+    </mat-chip-listbox>
+  </div>
+
+</ng-container>

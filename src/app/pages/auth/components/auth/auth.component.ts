@@ -5,13 +5,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AuthDto } from 'src/app/shared/models/auth.dto';
 import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss'],
+  styleUrls: ['./auth.component.scss', '../../auth.styles.scss'],
 })
 export class AuthComponent {
   authForm: FormGroup<{

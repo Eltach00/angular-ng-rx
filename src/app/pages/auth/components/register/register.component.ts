@@ -15,7 +15,7 @@ import { selectIsSubmiting } from 'src/app/store/submit.select';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  styleUrls: ['./register.component.scss', '../../auth.styles.scss'],
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;

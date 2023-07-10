@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title"> {{post.title }} </mat-card-title>
+    <mat-card-subtitle class="subtitle">
+      <div class="avatar">
+        <div class="img">
+          <img [src]="post.author.image" alt="">
+        </div>
+        <div class="author">
+          <p class="username">{{ post.author.username }}</p>
+          <p class="createdAt">{{ post.createdAt | date: 'longDate'}}</p>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="follow"> <mat-icon inline>star_border</mat-icon>
+          <span>
+            Follow {{ post.author.username}}
+          </span>
+        </button>
+        <button class="favorite"> <mat-icon inline>favorite_border</mat-icon> <span> Favorite Post
+            ({{post.favoritesCount}})</span>
+        </button>
+      </div>
+    </mat-card-subtitle>
+  </mat-card-header>
+</mat-card>

@@ -18,6 +18,7 @@ $green-palette: (
 
 @include mat.core();
 $my-primary: mat.define-palette($white-palette, 100);
+$my-dark-white: mat.define-palette($white-palette, 50);
 $my-accent: mat.define-palette(mat.$green-palette, 400);
 
 $my-theme: mat.define-light-theme(
