@@ -1,4 +1,4 @@
-export interface SuccessRegisterResponse {
+export interface SuccessAuthResponse {
   user: User;
 }
 

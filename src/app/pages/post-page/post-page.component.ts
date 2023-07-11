@@ -32,8 +32,6 @@ export class PostPageComponent implements OnInit {
       .subscribe((data) => {
         this.post = data.post.article;
         this.comments = data.comment.comments;
-        console.log(this.post);
-
         this.loading = false;
       });
   }

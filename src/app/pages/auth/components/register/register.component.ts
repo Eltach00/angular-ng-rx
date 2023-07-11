@@ -8,9 +8,9 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../auth.service';
 import { RegisterDto } from 'src/app/shared/models/register.dto';
-import { Store, select } from '@ngrx/store';
-import { registerAction } from 'src/app/store/register.action';
-import { selectIsSubmiting } from 'src/app/store/submit.select';
+import { Store } from '@ngrx/store';
+import { AuthAction } from 'src/app/store/register.action';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -35,7 +35,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {
     this.registerForm = this.fb.group({
       username: this.userName,
@@ -44,9 +45,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.isSubmitted$ = this.store.pipe(select(selectIsSubmiting));
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     this.errors = '';
@@ -54,7 +53,14 @@ export class RegisterComponent implements OnInit {
       return;
     }
     const data = new RegisterDto(this.registerForm.value);
-    this.store.dispatch(registerAction(data));
-    this.authService.register(data);
+    this.authService.register(data).subscribe({
+      next: (resp) => {
+        this.store.dispatch(AuthAction(resp.user));
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        this.errors = err.errors.message;
+      },
+    });
   }
 }

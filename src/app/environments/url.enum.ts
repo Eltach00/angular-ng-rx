@@ -4,4 +4,6 @@ export enum Urls {
   tags = 'api/tags',
   favorite = '/favorite',
   comments = '/comments',
+  login = 'api/users/login',
+  user = 'api/user',
 }

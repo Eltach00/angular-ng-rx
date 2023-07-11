@@ -19,6 +19,8 @@ import { MatSnackBarComponent } from './shared/mat-snack-bar/mat-snack-bar.compo
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { PostPageComponent } from './pages/post-page/post-page.component';
 import { HeaderCardComponent } from './pages/post-page/components/header-card/header-card.component';
+import { AuthReducer } from './store/register.reducer';
+import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { HeaderCardComponent } from './pages/post-page/components/header-card/he
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({ auth: AuthReducer }),
     AuthModule,
     BrowserAnimationsModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
@@ -47,6 +49,11 @@ import { HeaderCardComponent } from './pages/post-page/components/header-card/he
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
       multi: true,
     },
   ],

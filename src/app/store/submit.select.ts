@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { RegisterState } from '../shared/models/register.state';
+import { AuthState } from '../shared/models/register.state';
 
-export const authFeature = createFeatureSelector<RegisterState>('auth');
+export const getUsername = createFeatureSelector<AuthState>('auth');
 
-export const selectIsSubmiting = createSelector(
-  authFeature,
-  (state: RegisterState) => state.submitted
+export const selectFeatureUsername = createSelector(
+  getUsername,
+  (state: AuthState) => ({ username: state.username, loggedIn: state.loggedIn })
 );

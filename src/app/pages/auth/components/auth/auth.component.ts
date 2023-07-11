@@ -6,6 +6,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../auth.service';
+import { AuthDto } from 'src/app/shared/models/auth.dto';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AuthAction } from 'src/app/store/register.action';
 
 @Component({
   selector: 'app-auth',
@@ -13,11 +17,7 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./auth.component.scss', '../../auth.styles.scss'],
 })
 export class AuthComponent {
-  authForm: FormGroup<{
-    password: FormControl<string | null>;
-    email: FormControl<string | null>;
-  }>;
-
+  authForm: FormGroup;
   email: FormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -28,7 +28,12 @@ export class AuthComponent {
   ]);
   submitted = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private store: Store
+  ) {
     this.authForm = this.fb.group({
       email: this.email,
       password: this.password,
@@ -39,5 +44,12 @@ export class AuthComponent {
     if (this.authForm.invalid) {
       return;
     }
+    const data = new AuthDto(this.authForm.value);
+    this.authService.auth(data).subscribe({
+      next: (resp) => {
+        this.store.dispatch(AuthAction(resp.user));
+        this.router.navigate(['/']);
+      },
+    });
   }
 }
