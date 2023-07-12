@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
           this.loading = false;
           this.store.dispatch(AuthAction(resp.user));
         },
-        error: (err) => {
+        error: () => {
           this.loading = false;
           this.authService.logOut();
         },

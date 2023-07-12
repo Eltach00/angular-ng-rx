@@ -1,3 +1,5 @@
+<div *ngIf="loading" class="loading"> <span> Loading articles...</span> <mat-spinner color="accent"></mat-spinner>
+</div>
 <app-layout *ngIf="!loading">
   <router-outlet></router-outlet>
 </app-layout>
