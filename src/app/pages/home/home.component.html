@@ -1,8 +1,16 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Angular blog</mat-card-title>
-    <mat-card-subtitle>A place to share your Angular knowledge.</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
+<div *ngIf="loading; else content" class="loading"> <span> Loading articles...</span> <mat-spinner
+    color="accent"></mat-spinner>
+</div>
 
-<app-feed></app-feed>
+<ng-template #content>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Angular blog</mat-card-title>
+      <mat-card-subtitle>A place to share your Angular knowledge.</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+  <app-feed></app-feed>
+
+</ng-template>

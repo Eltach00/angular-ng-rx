@@ -1,3 +1,4 @@
+@import "src/assets/styles/colors.scss";
 .container {
   margin: 0 auto;
   margin-top: 30px;
@@ -12,4 +13,17 @@
 
 .loading {
   margin-top: 30px;
+}
+
+.sign-in {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 70%;
+  text-align: center;
+  a {
+    color: $main;
+    &:hover {
+      color: $grey-hover;
+    }
+  }
 }

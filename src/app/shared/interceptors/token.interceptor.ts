@@ -4,14 +4,14 @@ import {
   HttpEvent,
   HttpHandler,
   HttpRequest,
-  HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(private router: Router) {}
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler

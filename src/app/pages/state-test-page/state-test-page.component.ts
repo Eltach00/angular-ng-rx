@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { decrement, increment, reset } from 'src/app/store/counter.action';
+import {
+  decrement,
+  increment,
+  reset,
+} from 'src/app/store/test-ones/counter.action';
 
 @Component({
   selector: 'app-state-test-page',

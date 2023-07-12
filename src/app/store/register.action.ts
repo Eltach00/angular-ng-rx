@@ -8,3 +8,4 @@ export const registerAction = createAction(
   props<RegisterDto>()
 );
 export const AuthAction = createAction(RegisterActions.AUTHED, props<User>());
+export const LogOutAction = createAction(RegisterActions.LOGOUT);

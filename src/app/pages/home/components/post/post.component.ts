@@ -18,7 +18,7 @@ export class PostComponent {
   like() {
     this.feedService
       .favorite(this.post.slug)
-      .subscribe((resp: FavoriteResponse) => {
+      ?.subscribe((resp: FavoriteResponse) => {
         this.post = resp.article;
       });
   }

@@ -20,7 +20,11 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<ErrorResponse>> {
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
-        const errorMessage = err.error.message;
+        let errorMessage = err.error.message;
+        if (err.status === 403) {
+          errorMessage = 'Invalid email or password';
+        }
+
         this._snackBar.openFromComponent(MatSnackBarComponent, {
           data: {
             message: errorMessage,

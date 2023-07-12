@@ -1,6 +1,6 @@
 import { AuthState, RegisterState } from './../shared/models/register.state';
 import { createReducer, on } from '@ngrx/store';
-import { AuthAction, registerAction } from './register.action';
+import { AuthAction, LogOutAction, registerAction } from './register.action';
 
 export const initialState: RegisterState = {
   submitted: false,
@@ -22,6 +22,16 @@ export const AuthReducer = createReducer(
       username: action.username,
       image: action.image,
       loggedIn: true,
+    })
+  ),
+  on(
+    LogOutAction,
+    (state): AuthState => ({
+      ...state,
+      email: '',
+      username: '',
+      image: '',
+      loggedIn: false,
     })
   )
 );

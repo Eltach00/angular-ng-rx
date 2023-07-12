@@ -1,6 +1,7 @@
-<div *ngIf="loading" class="loading"> <span> Loading articles...</span> <mat-spinner color="accent"></mat-spinner>
+<div *ngIf="loading; else content" class="loading"> <span> Loading articles...</span> <mat-spinner
+    color="accent"></mat-spinner>
 </div>
-<ng-container *ngIf="!loading">
+<ng-template #content>
   <app-header-card [post]="post"></app-header-card>
 
   <div class="container">
@@ -12,4 +13,7 @@
     </mat-chip-listbox>
   </div>
 
-</ng-container>
+  <div *ngIf="!loggedIn" class="sign-in">
+    <a routerLink="/auth">Sign in</a> or <a routerLink="/register">Sign up</a> to add comments on this article.
+  </div>
+</ng-template>

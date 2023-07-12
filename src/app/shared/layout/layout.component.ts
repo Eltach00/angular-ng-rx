@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/pages/auth/auth.service';
 import { Store, select } from '@ngrx/store';
 import { selectFeatureUsername } from 'src/app/store/submit.select';
+import { LogOutAction } from 'src/app/store/register.action';
 
 @Component({
   selector: 'app-layout',
@@ -26,6 +27,7 @@ export class LayoutComponent implements OnInit {
 
   logout() {
     this.authService.logOut();
+    this.store.dispatch(LogOutAction());
     this.isLogIn = false;
   }
 }

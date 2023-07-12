@@ -49,9 +49,10 @@ mat-card {
     button {
       display: flex;
       align-items: center;
-      padding: 2px 7px;
+      padding: 2px 8px;
       background-color: inherit;
       border-radius: 5px;
+      font-size: 0.9rem;
       &:hover {
         cursor: pointer;
       }
@@ -60,6 +61,10 @@ mat-card {
       gap: 5px;
       color: $grey;
       border: 2px $grey solid;
+      &.following {
+        color: white;
+        background-color: $grey-hover;
+      }
       span {
         padding-top: 1px;
       }
@@ -72,6 +77,10 @@ mat-card {
       gap: 5px;
       color: $main;
       border: 2px $main solid;
+      &.favorited {
+        color: white;
+        background-color: $main;
+      }
       &:hover {
         color: white;
         background-color: $main;
