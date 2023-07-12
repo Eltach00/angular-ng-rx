@@ -1,0 +1,15 @@
+div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 50px;
+  a {
+    font-size: 1.8rem;
+    color: inherit;
+    font-weight: bold;
+    &:hover {
+      color: #3333339d;
+    }
+  }
+}
