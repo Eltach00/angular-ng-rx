@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export const materialModules = [
   MatButtonModule,
@@ -16,4 +17,5 @@ export const materialModules = [
   MatCardModule,
   MatChipsModule,
   MatSnackBarModule,
+  MatDialogModule,
 ];

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
 import { FeedService } from 'src/app/shared/services/feed.service';
 
@@ -12,8 +14,8 @@ export class HeaderCardComponent implements OnInit {
   favoritesCount: number;
   following: boolean;
   favorited: boolean;
-
-  constructor(private feedService: FeedService) {}
+  disabled = false;
+  constructor(private feedService: FeedService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.favoritesCount = this.post.favoritesCount;
@@ -21,26 +23,54 @@ export class HeaderCardComponent implements OnInit {
     this.favorited = this.post.favorited;
   }
   follow() {
+    this.disabled = true;
+    this.dialog.open(LoaderComponent, {
+      width: '250px',
+      height: '150px',
+    });
     this.feedService.follow(this.post.author.username)?.subscribe((resp) => {
       this.following = resp.profile.following;
+      this.dialog.closeAll();
+      this.disabled = false;
     });
   }
   unfollow() {
+    this.disabled = true;
+    this.dialog.open(LoaderComponent, {
+      width: '250px',
+      height: '150px',
+    });
     this.feedService.unfollow(this.post.author.username)?.subscribe((resp) => {
       this.following = resp.profile.following;
+      this.dialog.closeAll();
+      this.disabled = false;
     });
   }
 
   favorite() {
+    this.disabled = true;
+    this.dialog.open(LoaderComponent, {
+      width: '250px',
+      height: '150px',
+    });
     this.feedService.favorite(this.post.slug)?.subscribe((resp) => {
       this.favoritesCount = resp.article.favoritesCount;
       this.favorited = resp.article.favorited;
+      this.dialog.closeAll();
+      this.disabled = false;
     });
   }
   unfavorite() {
+    this.disabled = true;
+    this.dialog.open(LoaderComponent, {
+      width: '250px',
+      height: '150px',
+    });
     this.feedService.unfavorite(this.post.slug)?.subscribe((resp) => {
       this.favoritesCount = resp.article.favoritesCount;
       this.favorited = resp.article.favorited;
+      this.dialog.closeAll();
+      this.disabled = false;
     });
   }
 }

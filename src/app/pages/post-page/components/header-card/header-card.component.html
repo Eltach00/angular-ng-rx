@@ -12,13 +12,15 @@
         </div>
       </div>
       <div class="buttons">
-        <button (click)="following ? unfollow() : follow()" class="follow" [ngClass]="following && 'following'">
+        <button [disabled]="disabled" (click)="following ? unfollow() : follow()" class="follow"
+          [ngClass]="following && 'following'">
           <mat-icon inline>star_border</mat-icon>
           <span>
             {{ following ? 'Unfollow' : 'Follow'}} {{ post.author.username}}
           </span>
         </button>
-        <button (click)="favorited ? unfavorite() : favorite()" class="favorite" [ngClass]="favorited && 'favorited'">
+        <button [disabled]="disabled" (click)="favorited ? unfavorite() : favorite()" class="favorite"
+          [ngClass]="favorited && 'favorited'">
           <mat-icon inline>favorite_border</mat-icon> <span> {{ favorited ? 'Unfavorite' :'Favorite'}} Post
             ({{favoritesCount}})</span>
         </button>

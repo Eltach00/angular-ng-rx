@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 import {
   ArticleFavorite,
   FavoriteResponse,
@@ -12,17 +14,49 @@ import { FeedService } from 'src/app/shared/services/feed.service';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
   @Input() post: GlobalArticle | ArticleFavorite;
-  constructor(private feedService: FeedService, private router: Router) {}
-  like() {
-    this.feedService
-      .favorite(this.post.slug)
-      ?.subscribe((resp: FavoriteResponse) => {
-        this.post = resp.article;
-      });
+  disabled = false;
+  favorited: boolean;
+  favoritesCount: number;
+
+  constructor(
+    private feedService: FeedService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
+
+  ngOnInit(): void {
+    this.favoritesCount = this.post.favoritesCount;
+    this.favorited = this.post.favorited;
   }
 
+  favorite() {
+    this.disabled = true;
+    this.dialog.open(LoaderComponent, {
+      width: '250px',
+      height: '150px',
+    });
+    this.feedService.favorite(this.post.slug)?.subscribe((resp) => {
+      this.favoritesCount = resp.article.favoritesCount;
+      this.favorited = resp.article.favorited;
+      this.dialog.closeAll();
+      this.disabled = false;
+    });
+  }
+  unfavorite() {
+    this.disabled = true;
+    this.dialog.open(LoaderComponent, {
+      width: '250px',
+      height: '150px',
+    });
+    this.feedService.unfavorite(this.post.slug)?.subscribe((resp) => {
+      this.favoritesCount = resp.article.favoritesCount;
+      this.favorited = resp.article.favorited;
+      this.dialog.closeAll();
+      this.disabled = false;
+    });
+  }
   navigateToPostPage() {
     this.router.navigate(['/post/' + this.post.slug]);
   }

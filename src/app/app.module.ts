@@ -21,6 +21,7 @@ import { PostPageComponent } from './pages/post-page/post-page.component';
 import { HeaderCardComponent } from './pages/post-page/components/header-card/header-card.component';
 import { AuthReducer } from './store/register.reducer';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TokenInterceptor } from './shared/interceptors/token.interceptor';
     MatSnackBarComponent,
     PostPageComponent,
     HeaderCardComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
