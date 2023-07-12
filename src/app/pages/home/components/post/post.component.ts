@@ -40,9 +40,9 @@ export class PostComponent implements OnInit {
     this.feedService.favorite(this.post.slug)?.subscribe((resp) => {
       this.favoritesCount = resp.article.favoritesCount;
       this.favorited = resp.article.favorited;
-      this.dialog.closeAll();
-      this.disabled = false;
     });
+    this.dialog.closeAll();
+    this.disabled = false;
   }
   unfavorite() {
     this.disabled = true;

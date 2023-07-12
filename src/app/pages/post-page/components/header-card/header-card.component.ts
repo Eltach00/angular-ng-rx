@@ -30,9 +30,9 @@ export class HeaderCardComponent implements OnInit {
     });
     this.feedService.follow(this.post.author.username)?.subscribe((resp) => {
       this.following = resp.profile.following;
-      this.dialog.closeAll();
-      this.disabled = false;
     });
+    this.dialog.closeAll();
+    this.disabled = false;
   }
   unfollow() {
     this.disabled = true;
@@ -42,9 +42,9 @@ export class HeaderCardComponent implements OnInit {
     });
     this.feedService.unfollow(this.post.author.username)?.subscribe((resp) => {
       this.following = resp.profile.following;
-      this.dialog.closeAll();
-      this.disabled = false;
     });
+    this.dialog.closeAll();
+    this.disabled = false;
   }
 
   favorite() {
@@ -56,9 +56,9 @@ export class HeaderCardComponent implements OnInit {
     this.feedService.favorite(this.post.slug)?.subscribe((resp) => {
       this.favoritesCount = resp.article.favoritesCount;
       this.favorited = resp.article.favorited;
-      this.dialog.closeAll();
-      this.disabled = false;
     });
+    this.dialog.closeAll();
+    this.disabled = false;
   }
   unfavorite() {
     this.disabled = true;
@@ -69,8 +69,8 @@ export class HeaderCardComponent implements OnInit {
     this.feedService.unfavorite(this.post.slug)?.subscribe((resp) => {
       this.favoritesCount = resp.article.favoritesCount;
       this.favorited = resp.article.favorited;
-      this.dialog.closeAll();
-      this.disabled = false;
     });
+    this.dialog.closeAll();
+    this.disabled = false;
   }
 }
