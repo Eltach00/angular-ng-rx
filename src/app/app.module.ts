@@ -23,6 +23,7 @@ import { AuthReducer } from './store/register.reducer';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { NotFoundPage } from './pages/not-found-page/not-found.component';
+import { AccountPageComponent } from './pages/account-page/account-page.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { NotFoundPage } from './pages/not-found-page/not-found.component';
     HeaderCardComponent,
     LoaderComponent,
     NotFoundPage,
+    AccountPageComponent,
   ],
   imports: [
     BrowserModule,

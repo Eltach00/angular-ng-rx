@@ -12,8 +12,8 @@ import { LogOutAction } from 'src/app/store/register.action';
 export class LayoutComponent implements OnInit {
   isLogIn: boolean = false;
   date = new Date().getFullYear();
-
   username = '';
+
   constructor(private authService: AuthService, private store: Store) {}
 
   ngOnInit(): void {

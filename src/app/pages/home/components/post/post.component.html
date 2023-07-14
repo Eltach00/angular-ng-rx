@@ -3,8 +3,8 @@
     <div mat-card-avatar class="header-image"> <img [src]="post.author.image" alt=""></div>
     <mat-card-title>{{ post.author.username }}</mat-card-title>
     <mat-card-subtitle> {{ post.createdAt | date}} </mat-card-subtitle>
-    <button [disabled]="disabled" (click)="favorited ? unfavorite() : favorite()" class="like-btn" mat-fab extended
-      color="accent" aria-label="Example mini fab with a heart icon">
+    <button [disabled]="disabled" (click)="favorite()" class="like-btn" mat-fab extended color="accent"
+      aria-label="Example mini fab with a heart icon">
       <mat-icon color="primary">favorite</mat-icon>
       {{ favoritesCount }}
     </button>

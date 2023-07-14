@@ -7,6 +7,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
 export const materialModules = [
   MatButtonModule,
@@ -18,4 +19,5 @@ export const materialModules = [
   MatChipsModule,
   MatSnackBarModule,
   MatDialogModule,
+  MatMenuModule,
 ];

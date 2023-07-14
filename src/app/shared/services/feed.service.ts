@@ -9,13 +9,12 @@ import { FavoriteResponse } from '../models/feeds/favorite.response';
 import { ArticleResponse } from '../models/feeds/article.response';
 import { CommentResponse } from '../models/feeds/comment.response';
 import { FollowResponse } from '../models/feeds/follow.response';
-import { AuthGuard } from '../guards/auth-guard.guard';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FeedService {
-  constructor(private http: HttpClient, private authGuard: AuthGuard) {}
+  constructor(private http: HttpClient) {}
 
   getGlobalFeed(param?: string) {
     let params = new HttpParams().set('limit', 10).set('offset', 0);
@@ -31,48 +30,32 @@ export class FeedService {
     return this.http.get<TagsResponse>(env.baseUrl + Urls.tags);
   }
 
-  favorite(slug: string): Observable<FavoriteResponse> | null {
-    if (this.authGuard.canActivate()) {
-      return this.http.post<FavoriteResponse>(
-        env.baseUrl + Urls.globalFeed + `/${slug}` + Urls.favorite,
-        {}
-      );
-    } else {
-      return null;
-    }
+  favorite(slug: string): Observable<FavoriteResponse> {
+    return this.http.post<FavoriteResponse>(
+      env.baseUrl + Urls.globalFeed + `/${slug}` + Urls.favorite,
+      {}
+    );
   }
 
   unfavorite(slug: string) {
-    if (this.authGuard.canActivate()) {
-      return this.http.delete<FavoriteResponse>(
-        env.baseUrl + Urls.globalFeed + `/${slug}` + Urls.favorite,
-        {}
-      );
-    } else {
-      return null;
-    }
+    return this.http.delete<FavoriteResponse>(
+      env.baseUrl + Urls.globalFeed + `/${slug}` + Urls.favorite,
+      {}
+    );
   }
 
   follow(username: string) {
-    if (this.authGuard.canActivate()) {
-      return this.http.post<FollowResponse>(
-        env.baseUrl + Urls.profiles + `/${username}` + Urls.follow,
-        {}
-      );
-    } else {
-      return null;
-    }
+    return this.http.post<FollowResponse>(
+      env.baseUrl + Urls.profiles + `/${username}` + Urls.follow,
+      {}
+    );
   }
 
   unfollow(username: string) {
-    if (this.authGuard.canActivate()) {
-      return this.http.delete<FollowResponse>(
-        env.baseUrl + Urls.profiles + `/${username}` + Urls.follow,
-        {}
-      );
-    } else {
-      return null;
-    }
+    return this.http.delete<FollowResponse>(
+      env.baseUrl + Urls.profiles + `/${username}` + Urls.follow,
+      {}
+    );
   }
 
   getPost(slug: string) {

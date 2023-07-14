@@ -1,27 +1,39 @@
 <header>
   <mat-toolbar color="primary" class="nav-bar-container">
-
-    <span routerLink="/">My Blog</span>
+    <h1 routerLink="/">My Blog</h1>
 
     <div *ngIf="!isLogIn; else logInType" class="links">
-      <a routerLink="/">Home</a>
-      <a routerLink="/auth">Sign in</a>
-      <a routerLink="/register">Sign up</a>
+      <a class="link" routerLink="/">Home</a>
+      <a class="link" routerLink="/auth/sign-in">Sign in</a>
+      <a class="link" routerLink="/auth/register">Sign up</a>
     </div>
     <ng-template #logInType>
       <div class="links">
-        <a routerLink="/">Home</a>
-        <a routerLink="/new-post">New Post</a>
-        <a routerLink="/settings">Settings</a>
-        <a routerLink="/account"> {{username}} </a>
-        <a (click)="logout()">Log out</a>
+        <a class="link" routerLink="/">Home</a>
+        <a class="link" routerLink="/new-post"><mat-icon>library_add</mat-icon> <span>New Post</span></a>
+        <a class="link" [matMenuTriggerFor]="menu">
+          <mat-icon>account_circle</mat-icon>
+          <span> {{ username }}</span>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <a routerLink="/account" class="link"><mat-icon color="accent"
+                  [ngStyle]="{marginRight: 0}">settings_applications</mat-icon>
+                <span>Settings</span></a>
+            </button>
+          </mat-menu>
+        </a>
+        <a class="link" (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon> <span>Log out</span>
+        </a>
       </div>
     </ng-template>
   </mat-toolbar>
 </header>
+
 <ng-content></ng-content>
+
 <footer>
   <mat-toolbar color="primary">
-    <div>© {{date}}. An interactive learning project</div>
+    <div>© {{ date }}. An interactive learning project</div>
   </mat-toolbar>
 </footer>

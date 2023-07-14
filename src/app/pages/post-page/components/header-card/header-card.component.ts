@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
 import { FeedService } from 'src/app/shared/services/feed.service';
@@ -15,62 +16,69 @@ export class HeaderCardComponent implements OnInit {
   following: boolean;
   favorited: boolean;
   disabled = false;
-  constructor(private feedService: FeedService, private dialog: MatDialog) {}
+  constructor(
+    private feedService: FeedService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.favoritesCount = this.post.favoritesCount;
     this.following = this.post.author.following;
     this.favorited = this.post.favorited;
   }
+
   follow() {
-    this.disabled = true;
-    this.dialog.open(LoaderComponent, {
-      width: '250px',
-      height: '150px',
-    });
-    this.feedService.follow(this.post.author.username)?.subscribe((resp) => {
-      this.following = resp.profile.following;
-    });
-    this.dialog.closeAll();
-    this.disabled = false;
-  }
-  unfollow() {
-    this.disabled = true;
-    this.dialog.open(LoaderComponent, {
-      width: '250px',
-      height: '150px',
-    });
-    this.feedService.unfollow(this.post.author.username)?.subscribe((resp) => {
-      this.following = resp.profile.following;
-    });
-    this.dialog.closeAll();
-    this.disabled = false;
+    const token = localStorage.getItem('authToken');
+    if (token === null) {
+      this.router.navigate(['/auth']);
+    } else {
+      this.disabled = true;
+      this.dialog.open(LoaderComponent, {
+        width: '250px',
+        height: '150px',
+      });
+      this.following
+        ? this.feedService
+            .unfollow(this.post.author.username)
+            .subscribe((resp) => {
+              this.following = resp.profile.following;
+              this.dialog.closeAll();
+              this.disabled = false;
+            })
+        : this.feedService
+            .follow(this.post.author.username)
+            .subscribe((resp) => {
+              this.following = resp.profile.following;
+              this.dialog.closeAll();
+              this.disabled = false;
+            });
+    }
   }
 
   favorite() {
-    this.disabled = true;
-    this.dialog.open(LoaderComponent, {
-      width: '250px',
-      height: '150px',
-    });
-    this.feedService.favorite(this.post.slug)?.subscribe((resp) => {
-      this.favoritesCount = resp.article.favoritesCount;
-      this.favorited = resp.article.favorited;
-    });
-    this.dialog.closeAll();
-    this.disabled = false;
-  }
-  unfavorite() {
-    this.disabled = true;
-    this.dialog.open(LoaderComponent, {
-      width: '250px',
-      height: '150px',
-    });
-    this.feedService.unfavorite(this.post.slug)?.subscribe((resp) => {
-      this.favoritesCount = resp.article.favoritesCount;
-      this.favorited = resp.article.favorited;
-    });
-    this.dialog.closeAll();
-    this.disabled = false;
+    const token = localStorage.getItem('authToken');
+    if (token === null) {
+      this.router.navigate(['/auth']);
+    } else {
+      this.disabled = true;
+      this.dialog.open(LoaderComponent, {
+        width: '250px',
+        height: '150px',
+      });
+      this.favorited
+        ? this.feedService.unfavorite(this.post.slug)?.subscribe((resp) => {
+            this.favoritesCount = resp.article.favoritesCount;
+            this.favorited = resp.article.favorited;
+            this.dialog.closeAll();
+            this.disabled = false;
+          })
+        : this.feedService.favorite(this.post.slug)?.subscribe((resp) => {
+            this.favoritesCount = resp.article.favoritesCount;
+            this.favorited = resp.article.favorited;
+            this.dialog.closeAll();
+            this.disabled = false;
+          });
+    }
   }
 }

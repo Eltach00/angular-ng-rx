@@ -1,12 +1,15 @@
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
 import { RegisterComponent } from './components/register/register.component';
-import { NotFoundPage } from '../not-found-page/not-found.component';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
-  { path: 'auth', component: AuthComponent },
+  { path: 'sign-in', component: AuthComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '**', component: NotFoundPage },
 ];
 
-export const AuthRoutes = RouterModule.forChild(routes);
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
