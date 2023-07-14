@@ -27,7 +27,6 @@ export class LayoutComponent implements OnInit {
           this.profileUrl = profileUrl;
         }
       });
-
     const token = localStorage.getItem('authToken');
     if (token) {
       this.authService.firstLogIn().subscribe({

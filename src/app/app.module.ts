@@ -25,6 +25,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { NotFoundPage } from './pages/not-found-page/not-found.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NewPostPageComponent } from './pages/new-post-page/new-post-page.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoaderComponent,
     NotFoundPage,
     AccountPageComponent,
+    NewPostPageComponent,
   ],
   imports: [
     BrowserModule,
