@@ -6,6 +6,7 @@ export const initialState: RegisterState = {
   submitted: false,
 };
 export const authState: AuthState = {
+  bio: '',
   email: '',
   image: '',
   username: '',
@@ -18,6 +19,7 @@ export const AuthReducer = createReducer(
     AuthAction,
     (state, action): AuthState => ({
       ...state,
+      bio: action.bio,
       email: action.email,
       username: action.username,
       image: action.image,

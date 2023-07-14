@@ -6,6 +6,7 @@ import { Urls } from 'src/app/environments/url.enum';
 import { AuthDto } from 'src/app/shared/models/auth.dto';
 import { RegisterDto } from 'src/app/shared/models/register.dto';
 import { SuccessAuthResponse } from 'src/app/shared/models/register/succes.register.response';
+import { UserUpdateDto } from 'src/app/shared/models/user-update.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -70,5 +71,9 @@ export class AuthService {
 
   firstLogIn() {
     return this.http.get<SuccessAuthResponse>(env.baseUrl + Urls.user);
+  }
+
+  updateUser(dto: UserUpdateDto) {
+    return this.http.put<SuccessAuthResponse>(env.baseUrl + Urls.user, dto);
   }
 }

@@ -21,6 +21,14 @@
   }
 }
 
+.user-pic {
+  height: 26px;
+  border-radius: 50px;
+  float: left;
+  margin-right: 5px;
+  color: $main;
+}
+
 .link {
   display: flex;
   gap: 5px;

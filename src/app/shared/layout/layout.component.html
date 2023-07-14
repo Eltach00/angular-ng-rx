@@ -12,7 +12,7 @@
           <a class="link" routerLink="/">Home</a>
           <a class="link" routerLink="/new-post"><mat-icon>library_add</mat-icon> <span>New Post</span></a>
           <a class="link" [matMenuTriggerFor]="menu">
-            <mat-icon>account_circle</mat-icon>
+            <img class="user-pic" [src]="profileUrl">
             <span> {{ username }}</span>
             <mat-menu #menu="matMenu">
               <button mat-menu-item>

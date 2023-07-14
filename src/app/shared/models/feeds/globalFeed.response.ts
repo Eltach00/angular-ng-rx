@@ -18,7 +18,7 @@ export interface GlobalArticle {
 
 export interface Author {
   username: string;
-  bio: any;
+  bio: string;
   image: string;
   following: boolean;
 }

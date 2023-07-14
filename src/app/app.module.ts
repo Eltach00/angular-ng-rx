@@ -24,6 +24,7 @@ import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { NotFoundPage } from './pages/not-found-page/not-found.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AccountPageComponent } from './pages/account-page/account-page.componen
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     HttpClientModule,
     ...materialModules,
+    ReactiveFormsModule,
   ],
   providers: [
     {
