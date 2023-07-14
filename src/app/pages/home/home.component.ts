@@ -1,7 +1,10 @@
+import { SuccessAuthResponse } from 'src/app/shared/models/register/succes.register.response';
 import { Component, OnInit } from '@angular/core';
 import { AuthAction } from 'src/app/store/register.action';
 import { AuthService } from '../auth/auth.service';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import { selectFeatureUsername } from 'src/app/store/submit.select';
+import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,25 +12,9 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  loading = true;
+  loading = false;
 
   constructor(private authService: AuthService, private store: Store) {}
 
-  ngOnInit(): void {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      this.authService.firstLogIn().subscribe({
-        next: (resp) => {
-          this.loading = false;
-          this.store.dispatch(AuthAction(resp.user));
-        },
-        error: () => {
-          this.loading = false;
-          this.authService.logOut();
-        },
-      });
-    } else {
-      this.loading = false;
-    }
-  }
+  ngOnInit(): void {}
 }

@@ -1,3 +1,5 @@
+@import "src/assets/styles/colors.scss";
+
 .card {
   margin-bottom: 10px;
   min-width: 400px;
@@ -16,6 +18,9 @@
       color: white;
       font-weight: 500;
       font-size: 1rem;
+      &.liked {
+        background-color: $grey;
+      }
     }
     margin-bottom: 10px;
   }
