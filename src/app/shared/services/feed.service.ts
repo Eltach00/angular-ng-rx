@@ -9,6 +9,7 @@ import { FavoriteResponse } from '../models/feeds/favorite.response';
 import { ArticleResponse } from '../models/feeds/article.response';
 import { CommentResponse } from '../models/feeds/comment.response';
 import { FollowResponse } from '../models/feeds/follow.response';
+import { PostDto } from '../models/post.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,10 @@ export class FeedService {
     return this.http.get<GlobalFeedResponse>(env.baseUrl + Urls.globalFeed, {
       params,
     });
+  }
+
+  postArticle(dto: PostDto) {
+    return this.http.post<ArticleResponse>(env.baseUrl + Urls.globalFeed, dto);
   }
 
   tags() {

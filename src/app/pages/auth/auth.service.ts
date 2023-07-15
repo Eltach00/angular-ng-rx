@@ -26,9 +26,10 @@ export class AuthService {
 
   setToken({ user }: SuccessAuthResponse | null) {
     if (user) {
-      const expireTime = new Date(
-        new Date().getTime() * 1000
-      ); /*need to turn seconds into milliseconds*/
+      const date = new Date();
+      const today = new Date().getDate();
+      const expireTime = new Date(date.setDate(today + 7));
+
       localStorage.setItem('expiredTime', expireTime.toString());
       localStorage.setItem('authToken', user.token);
     } else {

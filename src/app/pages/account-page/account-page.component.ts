@@ -30,7 +30,7 @@ export class AccountPageComponent implements OnInit {
       profileUrl: this.fb.control('', Validators.required),
       username: this.fb.control('', Validators.required),
       bio: this.fb.control('', Validators.required),
-      email: this.fb.control('', Validators.required),
+      email: this.fb.control('', [Validators.required, Validators.email]),
       password: this.fb.control('', Validators.required),
     });
   }

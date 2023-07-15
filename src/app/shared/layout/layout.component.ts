@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/pages/auth/auth.service';
 import { Store, select } from '@ngrx/store';
-import { LogOutAction } from 'src/app/store/register.action';
 import { AuthAction } from 'src/app/store/register.action';
 import { selectFeatureUsername } from 'src/app/store/submit.select';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -16,13 +16,18 @@ export class LayoutComponent implements OnInit {
   username = '';
   loading: boolean = true;
   profileUrl = '';
-  constructor(private authService: AuthService, private store: Store) {}
+  constructor(
+    private authService: AuthService,
+    private store: Store,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.store
       .pipe(select(selectFeatureUsername))
-      .subscribe(({ username, profileUrl }) => {
-        if (this.isLogIn) {
+      .subscribe(({ username, profileUrl, loggedIn }) => {
+        if (loggedIn) {
+          this.isLogIn = loggedIn;
           this.username = username;
           this.profileUrl = profileUrl;
         }
@@ -34,7 +39,6 @@ export class LayoutComponent implements OnInit {
           this.store.dispatch(AuthAction(resp.user));
           this.username = resp.user.username;
           this.profileUrl = resp.user.image;
-          this.isLogIn = true;
           this.loading = false;
         },
         error: () => {
@@ -49,7 +53,11 @@ export class LayoutComponent implements OnInit {
 
   logout() {
     this.authService.logOut();
-    this.store.dispatch(LogOutAction());
+    this.router
+      .navigateByUrl('/HomeComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['/']);
+      });
     this.isLogIn = false;
   }
 }

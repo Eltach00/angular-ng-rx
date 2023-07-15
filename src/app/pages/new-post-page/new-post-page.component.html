@@ -1,1 +1,20 @@
-<p>new-post-page works!</p>
+<div class="container">
+  <h1>Add New Post</h1>
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <input type="text" formControlName="title" name="title" placeholder="Article title">
+    </div>
+    <div class="field">
+      <input type="text" formControlName="about" name="about" placeholder="What's this article about?">
+    </div>
+    <div class="field">
+      <textarea name="" formControlName="post" cols="30" rows="10"
+        placeholder="Write your article (in markdown)"></textarea>
+    </div>
+    <div class="field">
+      <input type="text" formControlName="tags" name="tags" placeholder="Enter tags">
+    </div>
+    <button type="submit">Post</button>
+
+  </form>
+</div>

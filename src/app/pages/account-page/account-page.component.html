@@ -2,19 +2,19 @@
   <h1>Your Settings</h1>
   <form [formGroup]="accountForm" (ngSubmit)="onUpdate()">
     <div class="field">
-      <input type="text" formControlName="profileUrl" name="image" id="" placeholder="URL of profile picture">
+      <input type="text" formControlName="profileUrl" name="image" placeholder="URL of profile picture">
     </div>
     <div class="field">
-      <input type="text" formControlName="username" name="username" id="" placeholder="Username">
+      <input type="text" formControlName="username" name="username" placeholder="Username">
     </div>
     <div class="field">
-      <textarea name="" formControlName="bio" id="" cols="30" rows="10" placeholder="Short bio about you"></textarea>
+      <textarea name="" formControlName="bio" cols="30" rows="10" placeholder="Short bio about you"></textarea>
     </div>
     <div class="field">
-      <input type="text" formControlName="email" name="email" id="" placeholder="Email">
+      <input type="text" formControlName="email" name="email" placeholder="Email">
     </div>
     <div class="field">
-      <input type="text" formControlName="password" name="password" id="" placeholder="New Password">
+      <input type="email" formControlName="password" name="password" placeholder="New Password">
     </div>
     <button type="submit">Update</button>
 
