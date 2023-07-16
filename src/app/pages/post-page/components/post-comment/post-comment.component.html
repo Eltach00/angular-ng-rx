@@ -1,0 +1,12 @@
+<div class="container">
+  <form (ngSubmit)="postComment(userForm.value)" #userForm="ngForm">
+    <textarea name="comment" ngModel placeholder="Wrtie a comment..."></textarea>
+    <div class="formDiv">
+      <div>
+        <img [src]="accountImage" alt="Profile image">
+        <span> {{profileUsername}} </span>
+      </div>
+      <button type="submit">Post comment</button>
+    </div>
+  </form>
+</div>

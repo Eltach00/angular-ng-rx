@@ -7,9 +7,13 @@ import { GlobalFeedResponse } from '../models/feeds/globalFeed.response';
 import { TagsResponse } from '../models/feeds/tags.response';
 import { FavoriteResponse } from '../models/feeds/favorite.response';
 import { ArticleResponse } from '../models/feeds/article.response';
-import { CommentResponse } from '../models/feeds/comment.response';
+import {
+  CommentResponse,
+  CommentsResponse,
+} from '../models/feeds/comment.response';
 import { FollowResponse } from '../models/feeds/follow.response';
 import { PostDto } from '../models/post.dto';
+import { CommentDto } from '../models/comment.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -70,8 +74,21 @@ export class FeedService {
   }
 
   getComments(slug: string) {
-    return this.http.get<CommentResponse>(
+    return this.http.get<CommentsResponse>(
       env.baseUrl + Urls.globalFeed + `/${slug}` + Urls.comments
+    );
+  }
+
+  postComment(slug: string, dto: CommentDto) {
+    return this.http.post<CommentResponse>(
+      env.baseUrl + Urls.globalFeed + `/${slug}` + Urls.comments,
+      dto
+    );
+  }
+
+  deleteComment(slug: string, id: string) {
+    return this.http.delete<CommentResponse>(
+      env.baseUrl + Urls.globalFeed + `/${slug}` + Urls.comments + `/${id}`
     );
   }
 }

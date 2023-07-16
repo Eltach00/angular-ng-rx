@@ -24,8 +24,10 @@ import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { NotFoundPage } from './pages/not-found-page/not-found.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewPostPageComponent } from './pages/new-post-page/new-post-page.component';
+import { CommentComponent } from './pages/post-page/components/comment/comment.component';
+import { PostCommentComponent } from './pages/post-page/components/post-comment/post-comment.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { NewPostPageComponent } from './pages/new-post-page/new-post-page.compon
     NotFoundPage,
     AccountPageComponent,
     NewPostPageComponent,
+    CommentComponent,
+    PostCommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ import { NewPostPageComponent } from './pages/new-post-page/new-post-page.compon
     HttpClientModule,
     ...materialModules,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     {

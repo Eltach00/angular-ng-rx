@@ -9,7 +9,7 @@
       {{ favoritesCount }}
     </button>
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content (click)="navigateToPostPage()">
     <h3 class="bodyTitle">{{ post.title }}</h3>
     <small class="description"> {{ post.description}} </small>
   </mat-card-content>

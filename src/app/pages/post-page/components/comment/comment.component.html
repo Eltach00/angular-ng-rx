@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="form-div">
+    <div class="upper-div">{{comment.body}}</div>
+    <div class="under-div">
+      <div class="author-info">
+        <img [src]="comment.author.image" alt="Profile image">
+        <span class="profile-link"> {{ comment.author.username}} </span>
+        <span> {{ comment.createdAt | date}} </span>
+      </div>
+      <div class="delete" (click)="deleteComment()"><mat-icon color="accent">delete</mat-icon></div>
+    </div>
+  </div>
+</div>

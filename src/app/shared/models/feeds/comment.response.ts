@@ -1,6 +1,6 @@
 import { Author } from './globalFeed.response';
 
-export interface CommentResponse {
+export interface CommentsResponse {
   comments: Comment[];
 }
 
@@ -10,4 +10,7 @@ export interface Comment {
   updatedAt: string;
   body: string;
   author: Author;
+}
+export interface CommentResponse {
+  comment: Comment;
 }

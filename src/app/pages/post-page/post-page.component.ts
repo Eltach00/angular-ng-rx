@@ -17,6 +17,8 @@ export class PostPageComponent implements OnInit {
   comments: Comment[];
   loading: boolean = true;
   loggedIn: boolean = false;
+  profileUrl: string;
+  profuleUsername: string;
   constructor(
     private activateRoute: ActivatedRoute,
     private feedService: FeedService,
@@ -40,6 +42,12 @@ export class PostPageComponent implements OnInit {
       });
     this.store.pipe(select(selectFeatureUsername)).subscribe((data) => {
       this.loggedIn = data.loggedIn;
+      this.profileUrl = data.profileUrl;
+      this.profuleUsername = data.username;
     });
+  }
+
+  addNewComment(comment: Comment) {
+    this.comments.push(comment);
   }
 }

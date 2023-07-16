@@ -25,6 +25,10 @@
     margin-bottom: 10px;
   }
   mat-card-content {
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
     margin-bottom: 5px;
     .bodyTitle {
       font-size: 1.1rem;
