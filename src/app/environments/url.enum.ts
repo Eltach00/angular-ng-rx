@@ -1,6 +1,7 @@
 export enum Urls {
   users = 'api/users',
   globalFeed = 'api/articles',
+  feed = '/feed',
   tags = 'api/tags',
   favorite = '/favorite',
   comments = '/comments',

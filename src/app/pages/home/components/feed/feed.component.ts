@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
+import { AuthService } from 'src/app/pages/auth/auth.service';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
 import { FeedService } from 'src/app/shared/services/feed.service';
 
@@ -9,18 +10,26 @@ import { FeedService } from 'src/app/shared/services/feed.service';
   styleUrls: ['./feed.component.scss'],
 })
 export class FeedComponent implements OnInit {
-  globalFeeds: GlobalArticle[];
   tags: string[];
-  constructor(private feedService: FeedService) {}
+  globalFeeds: GlobalArticle[];
+  feed: GlobalArticle[];
   loading = true;
+  constructor(
+    private feedService: FeedService,
+    private authservice: AuthService
+  ) {}
 
   ngOnInit() {
     forkJoin({
+      feed$: this.authservice.isAuthenficated()
+        ? this.feedService.getYourFeed()
+        : of(null),
       globalFeed$: this.feedService.getGlobalFeed(),
       tags$: this.feedService.tags(),
-    }).subscribe(({ globalFeed$, tags$ }) => {
+    }).subscribe(({ globalFeed$, tags$, feed$ }) => {
       this.globalFeeds = globalFeed$.articles;
       this.tags = tags$.tags;
+      this.feed = feed$ ? feed$.articles : null;
       this.loading = false;
     });
   }

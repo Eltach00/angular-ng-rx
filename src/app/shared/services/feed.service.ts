@@ -31,6 +31,16 @@ export class FeedService {
     });
   }
 
+  getYourFeed() {
+    let params = new HttpParams().set('limit', 10).set('offset', 0);
+    return this.http.get<GlobalFeedResponse>(
+      env.baseUrl + Urls.globalFeed + Urls.feed,
+      {
+        params,
+      }
+    );
+  }
+
   postArticle(dto: PostDto) {
     return this.http.post<ArticleResponse>(env.baseUrl + Urls.globalFeed, dto);
   }

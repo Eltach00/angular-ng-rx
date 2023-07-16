@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
 import { FeedService } from 'src/app/shared/services/feed.service';
+import { selectFeatureUsername } from 'src/app/store/submit.select';
 
 @Component({
   selector: 'app-header-card',
@@ -16,9 +18,11 @@ export class HeaderCardComponent implements OnInit {
   following: boolean;
   favorited: boolean;
   disabled = false;
+  loggedIn: boolean;
   constructor(
     private feedService: FeedService,
     private dialog: MatDialog,
+    private store: Store,
     private router: Router
   ) {}
 
@@ -26,12 +30,14 @@ export class HeaderCardComponent implements OnInit {
     this.favoritesCount = this.post.favoritesCount;
     this.following = this.post.author.following;
     this.favorited = this.post.favorited;
+    this.store.pipe(select(selectFeatureUsername)).subscribe((resp) => {
+      this.loggedIn = resp.loggedIn;
+    });
   }
 
   follow() {
-    const token = localStorage.getItem('authToken');
-    if (token === null) {
-      this.router.navigate(['/auth']);
+    if (!this.loggedIn) {
+      this.router.navigate(['/auth/sign-in']);
     } else {
       this.disabled = true;
       this.dialog.open(LoaderComponent, {
@@ -39,27 +45,34 @@ export class HeaderCardComponent implements OnInit {
         height: '150px',
       });
       this.following
-        ? this.feedService
-            .unfollow(this.post.author.username)
-            .subscribe((resp) => {
+        ? this.feedService.unfollow(this.post.author.username).subscribe({
+            next: (resp) => {
               this.following = resp.profile.following;
               this.dialog.closeAll();
               this.disabled = false;
-            })
-        : this.feedService
-            .follow(this.post.author.username)
-            .subscribe((resp) => {
+            },
+            error: () => {
+              this.dialog.closeAll();
+              this.disabled = false;
+            },
+          })
+        : this.feedService.follow(this.post.author.username).subscribe({
+            next: (resp) => {
               this.following = resp.profile.following;
               this.dialog.closeAll();
               this.disabled = false;
-            });
+            },
+            error: () => {
+              this.dialog.closeAll();
+              this.disabled = false;
+            },
+          });
     }
   }
 
   favorite() {
-    const token = localStorage.getItem('authToken');
-    if (token === null) {
-      this.router.navigate(['/auth']);
+    if (!this.loggedIn) {
+      this.router.navigate(['/auth/sign-in']);
     } else {
       this.disabled = true;
       this.dialog.open(LoaderComponent, {

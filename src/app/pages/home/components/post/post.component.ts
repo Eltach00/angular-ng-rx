@@ -36,8 +36,10 @@ export class PostComponent implements OnInit {
   }
 
   favorite() {
-    if (this.loggedIn) {
-      this.router.navigate(['/auth']);
+    console.log(this.loggedIn);
+
+    if (!this.loggedIn) {
+      this.router.navigate(['/auth/sign-in']);
     } else {
       this.disabled = true;
       this.dialog.open(LoaderComponent, {
@@ -45,17 +47,29 @@ export class PostComponent implements OnInit {
         height: '150px',
       });
       this.favorited
-        ? this.feedService.unfavorite(this.post.slug)?.subscribe((resp) => {
-            this.favoritesCount = resp.article.favoritesCount;
-            this.favorited = resp.article.favorited;
-            this.dialog.closeAll();
-            this.disabled = false;
+        ? this.feedService.unfavorite(this.post.slug)?.subscribe({
+            next: (resp) => {
+              this.favoritesCount = resp.article.favoritesCount;
+              this.favorited = resp.article.favorited;
+              this.dialog.closeAll();
+              this.disabled = false;
+            },
+            error: () => {
+              this.dialog.closeAll();
+              this.disabled = false;
+            },
           })
-        : this.feedService.favorite(this.post.slug)?.subscribe((resp) => {
-            this.favoritesCount = resp.article.favoritesCount;
-            this.favorited = resp.article.favorited;
-            this.dialog.closeAll();
-            this.disabled = false;
+        : this.feedService.favorite(this.post.slug)?.subscribe({
+            next: (resp) => {
+              this.favoritesCount = resp.article.favoritesCount;
+              this.favorited = resp.article.favorited;
+              this.dialog.closeAll();
+              this.disabled = false;
+            },
+            error: () => {
+              this.dialog.closeAll();
+              this.disabled = false;
+            },
           });
     }
   }
