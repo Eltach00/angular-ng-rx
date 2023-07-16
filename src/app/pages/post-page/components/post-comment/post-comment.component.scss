@@ -40,6 +40,16 @@
         color: #fff;
         background-color: $main;
         border: 1px solid $main;
+        &:hover {
+          background-color: $main-hover;
+          border-color: $main-hover;
+          cursor: pointer;
+        }
+        &:disabled {
+          background-color: $grey-hover;
+          border-color: $grey-hover;
+          cursor: not-allowed;
+        }
       }
     }
   }

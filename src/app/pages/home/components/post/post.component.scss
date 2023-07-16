@@ -15,11 +15,12 @@
     .like-btn {
       position: absolute;
       right: 20px;
-      color: white;
+      color: $main;
       font-weight: 500;
       font-size: 1rem;
       &.liked {
-        background-color: $grey;
+        color: white;
+        background-color: $main;
       }
     }
     margin-bottom: 10px;
@@ -27,7 +28,6 @@
   mat-card-content {
     &:hover {
       cursor: pointer;
-      text-decoration: underline;
     }
     margin-bottom: 5px;
     .bodyTitle {

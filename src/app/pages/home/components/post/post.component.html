@@ -4,8 +4,8 @@
     <mat-card-title>{{ post.author.username }}</mat-card-title>
     <mat-card-subtitle> {{ post.createdAt | date}} </mat-card-subtitle>
     <button [disabled]="disabled" (click)="favorite()" [ngClass]="{'like-btn': true, 'liked': favorited}" mat-fab
-      extended color="accent" aria-label="Example mini fab with a heart icon">
-      <mat-icon color="primary">favorite</mat-icon>
+      extended color="primary" aria-label="Example mini fab with a heart icon">
+      <mat-icon>favorite</mat-icon>
       {{ favoritesCount }}
     </button>
   </mat-card-header>

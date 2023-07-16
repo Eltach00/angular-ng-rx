@@ -6,7 +6,7 @@
         <img [src]="accountImage" alt="Profile image">
         <span> {{profileUsername}} </span>
       </div>
-      <button type="submit">Post comment</button>
+      <button type="submit" [disabled]="disabled">Post comment</button>
     </div>
   </form>
 </div>

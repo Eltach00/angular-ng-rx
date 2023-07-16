@@ -17,8 +17,9 @@
     <a routerLink="/auth">Sign in</a> or <a routerLink="/register">Sign up</a> to add comments on this article.
   </div>
 
-  <app-post-comment [accountImage]="profileUrl" [profileUsername]="profuleUsername" [slug]="post.slug"
+  <app-post-comment *ngIf="loggedIn" [accountImage]="profileUrl" [profileUsername]="profuleUsername" [slug]="post.slug"
     (newComment)="addNewComment($event)"></app-post-comment>
 
-  <app-comment *ngFor="let item of comments" [comment]="item"></app-comment>
+  <app-comment *ngFor="let item of comments" [comment]="item" [slug]="post.slug"
+    (commentDeleted)="deleteComment($event)"></app-comment>
 </ng-template>

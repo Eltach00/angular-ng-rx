@@ -12,13 +12,15 @@ export class PostCommentComponent {
   @Input() profileUsername: string;
   @Input() slug: string;
   @Output() newComment: EventEmitter<Comment> = new EventEmitter();
-
+  disabled: boolean = false;
   constructor(private feedService: FeedService) {}
 
   postComment({ comment }: { comment: string }) {
+    this.disabled = true;
     const dto = new CommentDto(comment);
     this.feedService.postComment(this.slug, dto).subscribe((resp) => {
       this.newComment.emit(resp.comment);
+      this.disabled = false;
     });
   }
 }

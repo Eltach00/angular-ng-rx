@@ -50,4 +50,8 @@ export class PostPageComponent implements OnInit {
   addNewComment(comment: Comment) {
     this.comments.push(comment);
   }
+
+  deleteComment(deleteId: number) {
+    this.comments = this.comments.filter((c) => c.id !== deleteId);
+  }
 }

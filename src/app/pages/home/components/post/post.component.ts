@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 import { ArticleFavorite } from 'src/app/shared/models/feeds/favorite.response';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
 import { FeedService } from 'src/app/shared/services/feed.service';
+import { selectFeatureUsername } from 'src/app/store/submit.select';
 
 @Component({
   selector: 'app-post',
@@ -16,21 +18,25 @@ export class PostComponent implements OnInit {
   disabled = false;
   favorited: boolean;
   favoritesCount: number;
+  loggedIn: boolean;
 
   constructor(
     private feedService: FeedService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
     this.favoritesCount = this.post.favoritesCount;
     this.favorited = this.post.favorited;
+    this.store.pipe(select(selectFeatureUsername)).subscribe((resp) => {
+      this.loggedIn = resp.loggedIn;
+    });
   }
 
   favorite() {
-    const token = localStorage.getItem('authToken');
-    if (token === null) {
+    if (this.loggedIn) {
       this.router.navigate(['/auth']);
     } else {
       this.disabled = true;
