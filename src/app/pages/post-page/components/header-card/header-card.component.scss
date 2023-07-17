@@ -60,6 +60,14 @@ mat-card {
         cursor: pointer;
       }
     }
+    .delete {
+      color: #bd4f4f;
+      border-color: #bd4f4f;
+      &:hover {
+        color: white;
+        background-color: #bd4f4f;
+      }
+    }
     .follow {
       gap: 5px;
       color: $grey;

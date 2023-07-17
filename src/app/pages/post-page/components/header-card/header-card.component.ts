@@ -14,6 +14,7 @@ import { selectFeatureUsername } from 'src/app/store/submit.select';
 })
 export class HeaderCardComponent implements OnInit {
   @Input() post: GlobalArticle;
+  @Input() isPorfilePost: boolean;
   favoritesCount: number;
   following: boolean;
   favorited: boolean;

@@ -19,6 +19,7 @@ export class PostPageComponent implements OnInit {
   loggedIn: boolean = false;
   profileUrl: string;
   profuleUsername: string;
+  isProfilePost: boolean = false;
   constructor(
     private activateRoute: ActivatedRoute,
     private feedService: FeedService,
@@ -26,6 +27,11 @@ export class PostPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.store.pipe(select(selectFeatureUsername)).subscribe((data) => {
+      this.loggedIn = data.loggedIn;
+      this.profileUrl = data.profileUrl;
+      this.profuleUsername = data.username;
+    });
     this.activateRoute.params
       .pipe(
         switchMap((param) => {
@@ -35,16 +41,14 @@ export class PostPageComponent implements OnInit {
           });
         })
       )
-      .subscribe((data) => {
-        this.post = data.post.article;
-        this.comments = data.comment.comments;
+      .subscribe(({ comment, post }) => {
+        this.post = post.article;
+        this.comments = comment.comments;
         this.loading = false;
+        if (this.profileUrl === post.article.author.username) {
+          this.isProfilePost = true;
+        }
       });
-    this.store.pipe(select(selectFeatureUsername)).subscribe((data) => {
-      this.loggedIn = data.loggedIn;
-      this.profileUrl = data.profileUrl;
-      this.profuleUsername = data.username;
-    });
   }
 
   addNewComment(comment: Comment) {

@@ -1,11 +1,14 @@
-<div *ngIf="loading; else content" class="loading"> <span> Loading articles...</span> <mat-spinner
-    color="accent"></mat-spinner>
+<div *ngIf="loading; else content" class="loading">
+  <span> Loading articles...</span> <mat-spinner color="accent"></mat-spinner>
 </div>
 <ng-template #content>
-  <app-header-card [post]="post"></app-header-card>
+  <app-header-card
+    [post]="post"
+    [isPorfilePost]="isProfilePost"
+  ></app-header-card>
 
   <div class="container">
-    <p class="body-text"> {{post.body}} </p>
+    <p class="body-text">{{ post.body }}</p>
     <mat-chip-listbox aria-label="tags">
       <mat-chip *ngFor="let tag of post.tagList" color="dark-white" highlighted>
         {{ tag }}
@@ -14,12 +17,22 @@
   </div>
 
   <div *ngIf="!loggedIn" class="sign-in">
-    <a routerLink="/auth">Sign in</a> or <a routerLink="/register">Sign up</a> to add comments on this article.
+    <a routerLink="/auth">Sign in</a> or
+    <a routerLink="/register">Sign up</a> to add comments on this article.
   </div>
 
-  <app-post-comment *ngIf="loggedIn" [accountImage]="profileUrl" [profileUsername]="profuleUsername" [slug]="post.slug"
-    (newComment)="addNewComment($event)"></app-post-comment>
+  <app-post-comment
+    *ngIf="loggedIn"
+    [accountImage]="profileUrl"
+    [profileUsername]="profuleUsername"
+    [slug]="post.slug"
+    (newComment)="addNewComment($event)"
+  ></app-post-comment>
 
-  <app-comment *ngFor="let item of comments" [comment]="item" [slug]="post.slug"
-    (commentDeleted)="deleteComment($event)"></app-comment>
+  <app-comment
+    *ngFor="let item of comments"
+    [comment]="item"
+    [slug]="post.slug"
+    (commentDeleted)="deleteComment($event)"
+  ></app-comment>
 </ng-template>
