@@ -1,8 +1,7 @@
 .containerHome {
   padding: 30px 5%;
   display: flex;
-  justify-content: center;
-
+  justify-content: space-between;
   gap: 20px;
   @media screen and (max-width: 768px) {
     flex-wrap: wrap-reverse;
