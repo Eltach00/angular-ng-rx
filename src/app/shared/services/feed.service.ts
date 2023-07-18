@@ -45,6 +45,20 @@ export class FeedService {
     return this.http.post<ArticleResponse>(env.baseUrl + Urls.globalFeed, dto);
   }
 
+  getPost(slug: string) {
+    return this.http.get<ArticleResponse>(
+      env.baseUrl + Urls.globalFeed + `/${slug}`
+    );
+  }
+
+  editPost(slug: string, dto: PostDto) {
+    return this.http.put(env.baseUrl + Urls.globalFeed + `/${slug}`, dto);
+  }
+
+  deletePost(slug: string) {
+    return this.http.delete(env.baseUrl + Urls.globalFeed + `/${slug}`);
+  }
+
   tags() {
     return this.http.get<TagsResponse>(env.baseUrl + Urls.tags);
   }
@@ -74,12 +88,6 @@ export class FeedService {
     return this.http.delete<FollowResponse>(
       env.baseUrl + Urls.profiles + `/${username}` + Urls.follow,
       {}
-    );
-  }
-
-  getPost(slug: string) {
-    return this.http.get<ArticleResponse>(
-      env.baseUrl + Urls.globalFeed + `/${slug}`
     );
   }
 

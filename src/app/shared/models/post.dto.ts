@@ -5,11 +5,11 @@ export class PostDto {
     tagList: string[];
     title: string;
   };
-  constructor({ about, post, tags, title }) {
+  constructor({ desc, body, tags, title }) {
     const formatTags = [...(<string>tags).split(',').map((tag) => tag.trim())];
     this.article = {
-      body: post,
-      description: about,
+      body,
+      description: desc,
       tagList: formatTags,
       title,
     };

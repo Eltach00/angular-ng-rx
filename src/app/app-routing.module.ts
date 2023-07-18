@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'post/:slug', component: PostPageComponent },
   { path: 'account', component: AccountPageComponent },
   { path: 'new-post', component: NewPostPageComponent },
+  { path: 'new-post/:slug', component: NewPostPageComponent },
   {
     path: 'auth',
     loadChildren: () =>

@@ -1,6 +1,6 @@
 <header>
   <mat-toolbar color="primary" class="nav-bar-container">
-    <h1 routerLink="/">My Blog</h1>
+    <h1><a routerLink="/"> My Blog </a></h1>
     <ng-container *ngIf="!loading">
       <div *ngIf="!isLogIn; else logInType" class="links">
         <a class="link" routerLink="/">Home</a>
@@ -10,15 +10,20 @@
       <ng-template #logInType>
         <div class="links">
           <a class="link" routerLink="/">Home</a>
-          <a class="link" routerLink="/new-post"><mat-icon>library_add</mat-icon> <span>New Post</span></a>
+          <a class="link" routerLink="/new-post"
+            ><mat-icon>library_add</mat-icon> <span>New Post</span></a
+          >
           <a class="link" [matMenuTriggerFor]="menu">
-            <img class="user-pic" [src]="profileUrl">
+            <img class="user-pic" [src]="profileUrl" />
             <span> {{ username }}</span>
             <mat-menu #menu="matMenu">
               <button mat-menu-item>
-                <a routerLink="/account" class="link"><mat-icon color="accent"
-                    [ngStyle]="{marginRight: 0}">settings_applications</mat-icon>
-                  <span>Settings</span></a>
+                <a routerLink="/account" class="link"
+                  ><mat-icon color="accent" [ngStyle]="{ marginRight: 0 }"
+                    >settings_applications</mat-icon
+                  >
+                  <span>Settings</span></a
+                >
               </button>
             </mat-menu>
           </a>

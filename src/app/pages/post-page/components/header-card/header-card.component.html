@@ -39,23 +39,24 @@
       </div>
       <ng-template #editContent>
         <div class="buttons">
+          <button [disabled]="disabled" (click)="editPost()" class="follow">
+            <mat-icon>edit</mat-icon>
+            <span> Edit Post </span>
+          </button>
+          <button [disabled]="disabled" (click)="deletePost()" class="delete">
+            <mat-icon>delete_forever</mat-icon>
+            <span> Delete Post </span>
+          </button>
           <button
             [disabled]="disabled"
             (click)="follow()"
             class="follow"
             [ngClass]="following && 'following'"
           >
-            <mat-icon>edit</mat-icon>
-            <span> Edit Post </span>
-          </button>
-          <button
-            [disabled]="disabled"
-            (click)="favorite()"
-            class="delete"
-            [ngClass]="favorited && 'favorited'"
-          >
-            <mat-icon>delete_forever</mat-icon>
-            <span> Delete Post </span>
+            <mat-icon inline>star_border</mat-icon>
+            <span>
+              {{ following ? "Unfollow" : "Follow" }} {{ post.author.username }}
+            </span>
           </button>
         </div>
       </ng-template>

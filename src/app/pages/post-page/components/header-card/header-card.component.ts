@@ -95,4 +95,14 @@ export class HeaderCardComponent implements OnInit {
           });
     }
   }
+
+  deletePost() {
+    this.feedService.deletePost(this.post.slug).subscribe(() => {
+      this.router.navigate(['/']);
+    });
+  }
+
+  editPost() {
+    this.router.navigate(['new-post', this.post.slug]);
+  }
 }
