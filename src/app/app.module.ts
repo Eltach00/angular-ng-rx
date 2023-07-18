@@ -28,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewPostPageComponent } from './pages/new-post-page/new-post-page.component';
 import { CommentComponent } from './pages/post-page/components/comment/comment.component';
 import { PostCommentComponent } from './pages/post-page/components/post-comment/post-comment.component';
+import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { PostCommentComponent } from './pages/post-page/components/post-comment/
     NewPostPageComponent,
     CommentComponent,
     PostCommentComponent,
+    SettingsPageComponent,
   ],
   imports: [
     BrowserModule,
