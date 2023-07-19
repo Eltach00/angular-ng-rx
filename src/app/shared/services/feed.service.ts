@@ -41,6 +41,17 @@ export class FeedService {
     );
   }
 
+  getAccountPosts(param: string, author: boolean) {
+    let params = new HttpParams()
+      .set(author ? 'author' : 'favorited', param)
+      .set('limit', 10)
+      .set('offset', 0);
+
+    return this.http.get<GlobalFeedResponse>(env.baseUrl + Urls.globalFeed, {
+      params,
+    });
+  }
+
   postArticle(dto: PostDto) {
     return this.http.post<ArticleResponse>(env.baseUrl + Urls.globalFeed, dto);
   }

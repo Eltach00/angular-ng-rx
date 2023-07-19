@@ -36,8 +36,6 @@ export class PostComponent implements OnInit {
   }
 
   favorite() {
-    console.log(this.loggedIn);
-
     if (!this.loggedIn) {
       this.router.navigate(['/auth/sign-in']);
     } else {
