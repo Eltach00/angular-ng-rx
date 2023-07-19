@@ -70,7 +70,7 @@ export class AuthService {
       );
   }
 
-  firstLogIn() {
+  getUser() {
     return this.http.get<SuccessAuthResponse>(env.baseUrl + Urls.user);
   }
 

@@ -34,7 +34,7 @@ export class LayoutComponent implements OnInit {
       });
 
     if (this.authService.isAuthenficated()) {
-      this.authService.firstLogIn().subscribe({
+      this.authService.getUser().subscribe({
         next: (resp) => {
           this.store.dispatch(AuthAction(resp.user));
           this.username = resp.user.username;

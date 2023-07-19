@@ -29,6 +29,8 @@ import { NewPostPageComponent } from './pages/new-post-page/new-post-page.compon
 import { CommentComponent } from './pages/post-page/components/comment/comment.component';
 import { PostCommentComponent } from './pages/post-page/components/post-comment/post-comment.component';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
+import { HeaderAccountComponent } from './pages/account-page/components/header/header.component';
+import { AccountPostsComponent } from './pages/account-page/components/account-posts/account-posts.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { SettingsPageComponent } from './pages/settings-page/settings-page.compo
     CommentComponent,
     PostCommentComponent,
     SettingsPageComponent,
+    HeaderAccountComponent,
+    AccountPostsComponent,
   ],
   imports: [
     BrowserModule,
