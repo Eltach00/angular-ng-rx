@@ -31,6 +31,7 @@ import { PostCommentComponent } from './pages/post-page/components/post-comment/
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { HeaderAccountComponent } from './pages/account-page/components/header/header.component';
 import { AccountPostsComponent } from './pages/account-page/components/account-posts/account-posts.component';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { AccountPostsComponent } from './pages/account-page/components/account-p
     ...materialModules,
     ReactiveFormsModule,
     FormsModule,
+    GraphQLModule,
   ],
   providers: [
     {
