@@ -46,6 +46,7 @@ export class PostPageComponent implements OnInit {
         this.comments = comment.comments;
         this.loading = false;
         if (this.profileUrl === post.article.author.username) {
+
           this.isProfilePost = true;
         }
       });

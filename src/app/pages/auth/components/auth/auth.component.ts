@@ -43,10 +43,10 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.g.getEuroCountries().subscribe( ({data}) => {
-      console.log("🚀 ~ file: auth.component.ts:47 ~ AuthComponent ~ this.g.getEuroCountries ~ res:", data)
+    // this.g.getEuroCountries().subscribe( ({data}) => {
+    //   console.log("🚀 ~ file: auth.component.ts:47 ~ AuthComponent ~ this.g.getEuroCountries ~ res:", data)
 
-    })
+    // })
 
     // console.log("🚀 ~ file: auth.component.ts:51 ~ AuthComponent ~ ngOnInit ~  this.g.getEuroCountries():",  this.g.getEuroCountries())
   }
