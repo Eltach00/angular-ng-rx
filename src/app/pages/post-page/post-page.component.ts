@@ -24,7 +24,8 @@ export class PostPageComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private feedService: FeedService,
     private store: Store
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.store.pipe(select(selectFeatureUsername)).subscribe((data) => {
@@ -46,6 +47,7 @@ export class PostPageComponent implements OnInit {
         this.comments = comment.comments;
         this.loading = false;
         if (this.profileUrl === post.article.author.username) {
+
           this.isProfilePost = true;
         }
       });

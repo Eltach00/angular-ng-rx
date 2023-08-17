@@ -11,7 +11,7 @@
           <p class="createdAt">{{ post.createdAt | date : "longDate" }}</p>
         </div>
       </div>
-      <div class="buttons" *ngIf="isPorfilePost; else editContent">
+      <div class="buttons" *ngIf="!isPorfilePost; else editContent">
         <button
           [disabled]="disabled"
           (click)="follow()"

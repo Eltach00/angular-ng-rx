@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { forkJoin, of } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, forkJoin, of, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/pages/auth/auth.service';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
 import { FeedService } from 'src/app/shared/services/feed.service';
@@ -14,13 +14,14 @@ interface tabs {
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnDestroy {
   tags: string[];
   globalFeeds: GlobalArticle[];
   feed: GlobalArticle[];
   loading = true;
   tabs: tabs[] = [];
   selectedIndex: number = 0;
+  _subject: Subject<number> = new Subject();
   constructor(
     private feedService: FeedService,
     private authservice: AuthService
@@ -33,7 +34,7 @@ export class FeedComponent implements OnInit {
         : of(null),
       globalFeed$: this.feedService.getGlobalFeed(),
       tags$: this.feedService.tags(),
-    }).subscribe(({ globalFeed$, tags$, feed$ }) => {
+    }).pipe(takeUntil(this._subject)).subscribe(({ globalFeed$, tags$, feed$ }) => {
       this.globalFeeds = globalFeed$.articles;
       this.tags = tags$.tags;
       this.feed = feed$ ? feed$.articles : null;
@@ -59,4 +60,10 @@ export class FeedComponent implements OnInit {
       this.selectedIndex -= 1;
     }
   }
+
+  ngOnDestroy(): void {
+    this._subject.next(1)
+    this._subject.complete()
+  }
+
 }
