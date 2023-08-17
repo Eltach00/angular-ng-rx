@@ -20,16 +20,11 @@ export class PostPageComponent implements OnInit {
   profileUrl: string;
   profuleUsername: string;
   isProfilePost: boolean = false;
-  changed: string
   constructor(
     private activateRoute: ActivatedRoute,
     private feedService: FeedService,
     private store: Store
   ) {
-    this.changed = 'hello'
-    setTimeout(() => {
-      this.changed = 'changed'
-    }, 2000);
   }
 
   ngOnInit(): void {
