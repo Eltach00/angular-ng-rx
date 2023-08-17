@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
@@ -24,8 +24,10 @@ export class PostComponent implements OnInit {
     private feedService: FeedService,
     private router: Router,
     private dialog: MatDialog,
-    private store: Store
-  ) {}
+    private store: Store,
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.favoritesCount = this.post.favoritesCount;
