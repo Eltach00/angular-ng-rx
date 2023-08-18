@@ -16,6 +16,10 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
+    p {
+      color: red;
+      text-align: left;
+    }
     button {
       padding: 0.75rem 2rem;
       font-size: 1.25rem;

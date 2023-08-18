@@ -32,6 +32,7 @@ import { SettingsPageComponent } from './pages/settings-page/settings-page.compo
 import { HeaderAccountComponent } from './pages/account-page/components/header/header.component';
 import { AccountPostsComponent } from './pages/account-page/components/account-posts/account-posts.component';
 import { GraphQLModule } from './graphql.module';
+import { AutoInvalidFocusDirective } from './shared/directives/form-focus.directive';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { GraphQLModule } from './graphql.module';
     SettingsPageComponent,
     HeaderAccountComponent,
     AccountPostsComponent,
+    AutoInvalidFocusDirective
   ],
   imports: [
     BrowserModule,

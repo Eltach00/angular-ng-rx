@@ -5,8 +5,7 @@ import { autoSave, autoSaveClear } from 'src/app/shared/decorators/auto-save';
 import { PostDto } from 'src/app/shared/models/post.dto';
 import { FeedService } from 'src/app/shared/services/feed.service';
 
-const key = 'saveForm'
-
+const key = 'saveForm';
 
 @Component({
   selector: 'app-new-post-page',
@@ -14,7 +13,6 @@ const key = 'saveForm'
   styleUrls: ['./new-post-page.component.scss'],
 })
 export class NewPostPageComponent implements OnInit {
-
   @autoSave(key)
   postForm: FormGroup;
 
@@ -45,6 +43,10 @@ export class NewPostPageComponent implements OnInit {
     }
   }
 
+  get formControl() {
+    return this.postForm.controls;
+  }
+
   buildForm() {
     this.postForm = this.fb.group({
       title: this.fb.control('', Validators.required),
@@ -55,6 +57,9 @@ export class NewPostPageComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.postForm.invalid) {
+      return;
+    }
     const dto = new PostDto(this.postForm.value);
     if (this.isEdit) {
       this.feedService.editPost(this.slug, dto).subscribe(() => {
@@ -62,8 +67,7 @@ export class NewPostPageComponent implements OnInit {
       });
     } else {
       this.feedService.postArticle(dto).subscribe(({ article }) => {
-
-        autoSaveClear(key)
+        autoSaveClear(key);
         this.router.navigate(['post/' + article.slug]);
       });
     }
