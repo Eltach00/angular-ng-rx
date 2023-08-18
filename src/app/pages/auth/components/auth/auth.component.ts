@@ -34,7 +34,7 @@ export class AuthComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private store: Store,
-    private g: GraphqlService
+    // private g: GraphqlService
   ) {
     this.authForm = this.fb.group({
       email: this.email,

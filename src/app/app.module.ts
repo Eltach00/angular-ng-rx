@@ -66,7 +66,6 @@ import { GraphQLModule } from './graphql.module';
     ...materialModules,
     ReactiveFormsModule,
     FormsModule,
-    GraphQLModule,
   ],
   providers: [
     {

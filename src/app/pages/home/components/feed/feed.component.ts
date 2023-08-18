@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, forkJoin, of, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/pages/auth/auth.service';
+import { AutoUnsubscribe } from 'src/app/shared/decorators/unsubscribe';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
 import { FeedService } from 'src/app/shared/services/feed.service';
 
@@ -14,27 +15,20 @@ interface tabs {
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
 })
-export class FeedComponent implements OnInit, OnDestroy {
+export class FeedComponent implements OnInit {
   tags: string[];
   globalFeeds: GlobalArticle[];
   feed: GlobalArticle[];
   loading = true;
   tabs: tabs[] = [];
   selectedIndex: number = 0;
-  _subject: Subject<number> = new Subject();
   constructor(
     private feedService: FeedService,
     private authservice: AuthService
   ) {}
 
   ngOnInit() {
-    forkJoin({
-      feed$: this.authservice.isAuthenficated()
-        ? this.feedService.getYourFeed()
-        : of(null),
-      globalFeed$: this.feedService.getGlobalFeed(),
-      tags$: this.feedService.tags(),
-    }).pipe(takeUntil(this._subject)).subscribe(({ globalFeed$, tags$, feed$ }) => {
+    this.getHttp().subscribe(({ globalFeed$, tags$, feed$ }) => {
       this.globalFeeds = globalFeed$.articles;
       this.tags = tags$.tags;
       this.feed = feed$ ? feed$.articles : null;
@@ -43,6 +37,21 @@ export class FeedComponent implements OnInit, OnDestroy {
       this.loading = false;
     });
   }
+
+  trackByfn(index: number, item: any) {
+    return index;
+  }
+
+  @AutoUnsubscribe()
+  getHttp() {
+   return forkJoin({
+      feed$: this.authservice.isAuthenficated()
+        ? this.feedService.getYourFeed()
+        : of(null),
+      globalFeed$: this.feedService.getGlobalFeed(),
+      tags$: this.feedService.tags(),
+    })
+    }
 
   changeTag(tag: string) {
     if (tag) {
@@ -61,9 +70,6 @@ export class FeedComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    this._subject.next(1)
-    this._subject.complete()
-  }
+
 
 }
