@@ -13,6 +13,7 @@ import { AppRoutingModule } from './auth.routing';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+
   ],
 })
 export class AuthModule {}
