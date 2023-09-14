@@ -58,9 +58,6 @@ export class RegisterComponent implements OnInit {
         this.store.dispatch(AuthAction(resp.user));
         this.router.navigate(['/']);
       },
-      error: (err) => {
-        this.errors = err.errors.message;
-      },
     });
   }
 }

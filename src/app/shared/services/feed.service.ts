@@ -14,13 +14,18 @@ import {
 import { FollowResponse } from '../models/feeds/follow.response';
 import { PostDto } from '../models/post.dto';
 import { CommentDto } from '../models/comment.dto';
+import { RetryWhen } from '../decorators/retryWhenError';
+import { cachedRequest } from '../decorators/cache-decorator';
+import { CacheService } from '../decorators/cash-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FeedService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private readonly cache: CacheService) {}
 
+  @cachedRequest(function () { return this.cache; })
   getGlobalFeed(param?: string) {
     let params = new HttpParams().set('limit', 10).set('offset', 0);
     if (param) {
@@ -28,7 +33,7 @@ export class FeedService {
     }
     return this.http.get<GlobalFeedResponse>(env.baseUrl + Urls.globalFeed, {
       params,
-    });
+    })
   }
 
   getYourFeed() {
@@ -70,6 +75,7 @@ export class FeedService {
     return this.http.delete(env.baseUrl + Urls.globalFeed + `/${slug}`);
   }
 
+  @RetryWhen()
   tags() {
     return this.http.get<TagsResponse>(env.baseUrl + Urls.tags);
   }

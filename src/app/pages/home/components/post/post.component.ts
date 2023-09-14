@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
@@ -13,7 +20,7 @@ import { selectFeatureUsername } from 'src/app/store/submit.select';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, OnChanges {
   @Input() post: GlobalArticle | ArticleFavorite;
   disabled = false;
   favorited: boolean;
@@ -25,8 +32,13 @@ export class PostComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private store: Store,
+    private cd: ChangeDetectorRef
   ) {
+    cd.detach()
+  }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.cd.reattach();
   }
 
   ngOnInit(): void {
@@ -41,6 +53,7 @@ export class PostComponent implements OnInit {
     if (!this.loggedIn) {
       this.router.navigate(['/auth/sign-in']);
     } else {
+      this.cd.reattach();
       this.disabled = true;
       this.dialog.open(LoaderComponent, {
         width: '250px',

@@ -12,7 +12,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FeedComponent } from './pages/home/components/feed/feed.component';
 import { PostComponent } from './pages/home/components/post/post.component';
-
 import { TagsComponent } from './pages/home/components/tags/tags.component';
 import { materialModules } from './shared/material-modules/material.modules';
 import { MatSnackBarComponent } from './shared/mat-snack-bar/mat-snack-bar.component';
@@ -31,7 +30,6 @@ import { PostCommentComponent } from './pages/post-page/components/post-comment/
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { HeaderAccountComponent } from './pages/account-page/components/header/header.component';
 import { AccountPostsComponent } from './pages/account-page/components/account-posts/account-posts.component';
-import { GraphQLModule } from './graphql.module';
 import { AutoInvalidFocusDirective } from './shared/directives/form-focus.directive';
 
 @NgModule({
@@ -55,7 +53,7 @@ import { AutoInvalidFocusDirective } from './shared/directives/form-focus.direct
     SettingsPageComponent,
     HeaderAccountComponent,
     AccountPostsComponent,
-    AutoInvalidFocusDirective
+    AutoInvalidFocusDirective,
   ],
   imports: [
     BrowserModule,
