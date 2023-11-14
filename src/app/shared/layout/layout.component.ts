@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/pages/auth/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { Store, select } from '@ngrx/store';
 import { AuthAction } from 'src/app/store/register.action';
 import { selectFeatureUsername } from 'src/app/store/submit.select';

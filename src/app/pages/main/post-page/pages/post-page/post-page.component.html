@@ -1,7 +1,3 @@
-<div *ngIf="loading; else content" class="loading">
-  <span> Loading articles...</span> <mat-spinner color="accent"></mat-spinner>
-</div>
-<ng-template #content>
   <app-header-card
     [post]="post"
     [isPorfilePost]="isProfilePost"
@@ -35,4 +31,3 @@
     [slug]="post.slug"
     (commentDeleted)="deleteComment($event)"
   ></app-comment>
-</ng-template>

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
   MAT_SNACK_BAR_DATA,
@@ -8,6 +9,8 @@ import {
   selector: 'app-mat-snack-bar',
   templateUrl: './mat-snack-bar.component.html',
   styleUrls: ['./mat-snack-bar.component.scss'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class MatSnackBarComponent {
   snackBarRef = inject(MatSnackBarRef);

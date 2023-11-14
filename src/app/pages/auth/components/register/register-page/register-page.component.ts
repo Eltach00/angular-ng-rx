@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
 import { AuthAction } from 'src/app/store/register.action';
 import { Router } from '@angular/router';
 import { RegisterDTO } from 'src/app/shared/models/register.dto';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-register-page',

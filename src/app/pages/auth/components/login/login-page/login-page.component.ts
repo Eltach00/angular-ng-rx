@@ -9,7 +9,7 @@ import { AuthDto } from 'src/app/shared/models/auth.dto';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AuthAction } from 'src/app/store/register.action';
-import { AuthService } from 'src/app/pages/auth/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-login-page',

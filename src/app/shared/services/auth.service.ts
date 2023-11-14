@@ -8,7 +8,9 @@ import { RegisterDTO } from 'src/app/shared/models/register.dto';
 import { SuccessAuthResponse } from 'src/app/shared/models/register/succes.register.response';
 import { UserUpdateDto } from 'src/app/shared/models/user-update.dto';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   constructor(private http: HttpClient) {}
 

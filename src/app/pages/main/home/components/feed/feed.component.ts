@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, forkJoin, of, takeUntil } from 'rxjs';
-import { AuthService } from 'src/app/pages/auth/services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { forkJoin, of } from 'rxjs';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { AutoUnsubscribe } from 'src/app/shared/decorators/unsubscribe';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
 import { FeedService } from 'src/app/shared/services/feed.service';

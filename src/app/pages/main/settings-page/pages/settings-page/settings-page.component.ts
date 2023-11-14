@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { UserUpdateDto } from 'src/app/shared/models/user-update.dto';
 import { selectAuth } from 'src/app/store/submit.select';
-import { AuthService } from '../auth/services/auth.service';
 import { AuthState } from 'src/app/shared/models/register.state';
 import { User } from 'src/app/shared/models/register/succes.register.response';
 import { AuthAction } from 'src/app/store/register.action';
+import { AuthService } from 'src/app/shared/services/auth.service';
 @Component({
   selector: 'app-settings-page',
   templateUrl: './settings-page.component.html',
   styleUrls: ['./settings-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsPageComponent implements OnInit {
   accountForm: FormGroup;
