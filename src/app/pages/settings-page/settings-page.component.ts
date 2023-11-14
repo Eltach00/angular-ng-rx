@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { UserUpdateDto } from 'src/app/shared/models/user-update.dto';
 import { selectAuth } from 'src/app/store/submit.select';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../auth/services/auth.service';
 import { AuthState } from 'src/app/shared/models/register.state';
 import { User } from 'src/app/shared/models/register/succes.register.response';
 import { AuthAction } from 'src/app/store/register.action';

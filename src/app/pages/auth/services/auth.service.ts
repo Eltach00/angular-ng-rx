@@ -4,17 +4,15 @@ import { Observable, tap } from 'rxjs';
 import { env } from 'src/app/environments/environment';
 import { Urls } from 'src/app/environments/url.enum';
 import { AuthDto } from 'src/app/shared/models/auth.dto';
-import { RegisterDto } from 'src/app/shared/models/register.dto';
+import { RegisterDTO } from 'src/app/shared/models/register.dto';
 import { SuccessAuthResponse } from 'src/app/shared/models/register/succes.register.response';
 import { UserUpdateDto } from 'src/app/shared/models/user-update.dto';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  register(dto: RegisterDto): Observable<SuccessAuthResponse> {
+  register(dto: RegisterDTO): Observable<SuccessAuthResponse> {
     return this.http
       .post<SuccessAuthResponse>(env.baseUrl + Urls.users, dto)
       .pipe(

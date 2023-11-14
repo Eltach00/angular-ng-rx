@@ -1,23 +1,24 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../auth.service';
-import { RegisterDto } from 'src/app/shared/models/register.dto';
 import { Store } from '@ngrx/store';
 import { AuthAction } from 'src/app/store/register.action';
 import { Router } from '@angular/router';
+import { RegisterDTO } from 'src/app/shared/models/register.dto';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss', '../../auth.styles.scss'],
+  selector: 'app-register-page',
+  templateUrl: './register-page.component.html',
+  styleUrls: ['../../../auth.styles.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterComponent implements OnInit {
+export class RegisterPageComponent {
   registerForm: FormGroup;
 
   userName: FormControl = new FormControl('', Validators.required);
@@ -45,14 +46,12 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
-
   onSubmit() {
     this.errors = '';
     if (this.registerForm.invalid) {
       return;
     }
-    const data = new RegisterDto(this.registerForm.value);
+    const data: RegisterDTO = this.registerForm.value;
     this.authService.register(data).subscribe({
       next: (resp) => {
         this.store.dispatch(AuthAction(resp.user));
