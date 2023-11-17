@@ -1,5 +1,4 @@
 <app-account-header [user]="user"></app-account-header>
 <app-account-posts
-  *ngIf="user.loggedIn"
-  [username]="user.username"
+  [user]="user?.username"
 ></app-account-posts>

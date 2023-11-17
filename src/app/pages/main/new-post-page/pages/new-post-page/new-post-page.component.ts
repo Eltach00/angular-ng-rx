@@ -29,18 +29,18 @@ export class NewPostPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    this.slug = this.activateRoute.snapshot.params['slug'];
-    if (this.slug) {
-      this.isEdit = true;
-      this.feedService.getPost(this.slug).subscribe(({ article }) => {
-        this.postForm.patchValue({
-          title: article.title,
-          desc: article.description,
-          body: article.body,
-          tags: article.tagList.join(','),
-        });
-      });
-    }
+    // this.slug = this.activateRoute.snapshot.params['slug'];
+    // if (this.slug) {
+    //   this.isEdit = true;
+    //   this.feedService.getPost(this.slug).subscribe(({ article }) => {
+    //     this.postForm.patchValue({
+    //       title: article.title,
+    //       desc: article.description,
+    //       body: article.body,
+    //       tags: article.tagList.join(','),
+    //     });
+    //   });
+    // }
   }
 
   get formControl() {

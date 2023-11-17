@@ -1,11 +1,11 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title class="title">
-      <div><img [src]="user.image" alt="profile image" /></div>
-      <h2>{{ user.username }}</h2>
+      <div><img [src]="user?.image" alt="profile image" /></div>
+      <h2>{{ user?.username }}</h2>
     </mat-card-title>
     <mat-card-subtitle class="subtitle">
-      <div>{{ user.bio }}</div>
+      <div>{{ user?.bio }}</div>
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-footer class="mat-footer">

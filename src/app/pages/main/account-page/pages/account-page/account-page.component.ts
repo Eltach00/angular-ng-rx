@@ -13,7 +13,9 @@ export class AccountPageComponent implements OnInit {
   constructor(private store: Store) {}
   ngOnInit(): void {
     this.store.pipe(select(selectAuth)).subscribe((user) => {
-      this.user = user;
+      if (user.loggedIn) {
+        this.user = user;
+      }
     });
   }
 }
