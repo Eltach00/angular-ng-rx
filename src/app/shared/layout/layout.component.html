@@ -1,10 +1,10 @@
 <header>
   <mat-toolbar color="primary" class="nav-bar-container">
     <h1><a routerLink="/"> My Blog </a></h1>
-    <ng-container *ngIf="!loading">
+    <ng-container>
       <div *ngIf="!isLogIn; else logInType" class="links">
         <a class="link" routerLink="/">Home</a>
-        <a class="link" routerLink="/auth/sign-in">Sign in</a>
+        <a class="link" [routerLink]="['auth', 'sign-in']">Sign in</a>
         <a class="link" routerLink="/auth/register">Sign up</a>
       </div>
       <ng-template #logInType>
@@ -51,3 +51,4 @@
     <div>© {{ date }}. An interactive learning project</div>
   </mat-toolbar>
 </footer>
+<app-loader *ngIf="isActive"></app-loader>

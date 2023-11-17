@@ -1,0 +1,51 @@
+<div class="container">
+  <h1>Add New Post</h1>
+  <form [formGroup]="postForm" AutoInvalidFocus (ngSubmit)="onSubmit()">
+    <div class="field">
+      <p *ngIf="formControl['title'].errors?.['required'] && formControl['title'].touched">
+        *Title is required
+      </p>
+      <input
+        type="text"
+        formControlName="title"
+        name="title"
+        placeholder="Article title"
+      />
+    </div>
+    <div class="field">
+      <p *ngIf="formControl['desc'].errors?.['required'] && formControl['desc'].touched">
+        *Description is required
+      </p>
+      <input
+        type="text"
+        formControlName="desc"
+        name="desc"
+        placeholder="What's this article about?"
+      />
+    </div>
+    <div class="field">
+      <p *ngIf="formControl['body'].errors?.['required'] && formControl['body'].touched">
+        *Text is required
+      </p>
+      <textarea
+        name="body"
+        formControlName="body"
+        cols="30"
+        rows="10"
+        placeholder="Write your article (in markdown)"
+      ></textarea>
+    </div>
+    <div class="field">
+      <p *ngIf="formControl['tags'].errors?.['required'] && formControl['tags'].touched">
+        *At least 1 tag is required
+      </p>
+      <input
+        type="text"
+        formControlName="tags"
+        name="tags"
+        placeholder="Enter tags"
+      />
+    </div>
+    <button type="submit">{{ isEdit ? "Edit" : "Post" }}</button>
+  </form>
+</div>

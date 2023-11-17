@@ -1,0 +1,65 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title"> {{ post?.title }} </mat-card-title>
+    <mat-card-subtitle class="subtitle">
+      <div class="avatar">
+        <div class="img">
+          <img [src]="post?.author.image" alt="" />
+        </div>
+        <div class="author">
+          <p class="username">{{ post?.author.username }}</p>
+          <p class="createdAt">{{ post?.createdAt | date : "longDate" }}</p>
+        </div>
+      </div>
+      <div class="buttons" *ngIf="!isPorfilePost; else editContent">
+        <button
+          [disabled]="disabled"
+          (click)="follow()"
+          class="follow"
+          [ngClass]="following && 'following'"
+        >
+          <mat-icon inline>star_border</mat-icon>
+          <span>
+            {{ following ? "Unfollow" : "Follow" }} {{ post?.author.username }}
+          </span>
+        </button>
+        <button
+          [disabled]="disabled"
+          (click)="favorite()"
+          class="favorite"
+          [ngClass]="favorited && 'favorited'"
+        >
+          <mat-icon inline>favorite_border</mat-icon>
+          <span>
+            {{ favorited ? "Unfavorite" : "Favorite" }} Post ({{
+              favoritesCount
+            }})</span
+          >
+        </button>
+      </div>
+      <ng-template #editContent>
+        <div class="buttons">
+          <button [disabled]="disabled" (click)="editPost()" class="follow">
+            <mat-icon>edit</mat-icon>
+            <span> Edit Post </span>
+          </button>
+          <button [disabled]="disabled" (click)="deletePost()" class="delete">
+            <mat-icon>delete_forever</mat-icon>
+            <span> Delete Post </span>
+          </button>
+          <button
+            [disabled]="disabled"
+            (click)="follow()"
+            class="follow"
+            [ngClass]="following && 'following'"
+          >
+            <mat-icon inline>star_border</mat-icon>
+            <span>
+              {{ following ? "Unfollow" : "Follow" }} {{ post?.author.username }}
+            </span>
+          </button>
+        </div>
+      </ng-template>
+    </mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
