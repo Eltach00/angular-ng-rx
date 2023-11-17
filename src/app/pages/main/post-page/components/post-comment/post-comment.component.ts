@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommentDto } from 'src/app/shared/models/comment.dto';
 import { Comment } from 'src/app/shared/models/feeds/comment.response';
-import { FeedService } from 'src/app/shared/services/feed.service';
+import { FeedService } from 'src/app/core/services/feed.service';
 @Component({
   selector: 'app-post-comment',
   templateUrl: './post-comment.component.html',

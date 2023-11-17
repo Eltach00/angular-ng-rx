@@ -3,17 +3,17 @@ import { HttpClient, HttpHandler, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { env } from 'src/app/environments/environment';
 import { Urls } from 'src/app/environments/url.enum';
-import { GlobalFeedResponse } from '../models/feeds/globalFeed.response';
-import { TagsResponse } from '../models/feeds/tags.response';
-import { FavoriteResponse } from '../models/feeds/favorite.response';
-import { ArticleResponse } from '../models/feeds/article.response';
+import { GlobalFeedResponse } from '../../shared/models/feeds/globalFeed.response';
+import { TagsResponse } from '../../shared/models/feeds/tags.response';
+import { FavoriteResponse } from '../../shared/models/feeds/favorite.response';
+import { ArticleResponse } from '../../shared/models/feeds/article.response';
 import {
   CommentResponse,
   CommentsResponse,
-} from '../models/feeds/comment.response';
-import { FollowResponse } from '../models/feeds/follow.response';
-import { PostDto } from '../models/post.dto';
-import { CommentDto } from '../models/comment.dto';
+} from '../../shared/models/feeds/comment.response';
+import { FollowResponse } from '../../shared/models/feeds/follow.response';
+import { PostDto } from '../../shared/models/post.dto';
+import { CommentDto } from '../../shared/models/comment.dto';
 import { RetryWhen } from '../decorators/retryWhenError';
 import { cachedRequest } from '../decorators/cache-decorator';
 import { CacheService } from '../decorators/cash-service';

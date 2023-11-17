@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
-import { FeedService } from 'src/app/shared/services/feed.service';
+import { FeedService } from 'src/app/core/services/feed.service';
 import { selectFeatureUsername } from 'src/app/store/submit.select';
 
 @Component({
@@ -28,10 +28,11 @@ export class HeaderCardComponent implements OnInit {
     private router: Router
   ) {}
 
+
   ngOnInit(): void {
-    this.favoritesCount = this.post.favoritesCount;
-    this.following = this.post.author.following;
-    this.favorited = this.post.favorited;
+    this.favoritesCount = this.post?.favoritesCount;
+    this.following = this.post?.author.following;
+    this.favorited = this.post?.favorited;
     this.store.pipe(select(selectFeatureUsername)).subscribe((resp) => {
       this.loggedIn = resp.loggedIn;
     });

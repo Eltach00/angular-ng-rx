@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { forkJoin, of } from 'rxjs';
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { AutoSubscribe } from 'src/app/shared/decorators/unsubscribe';
+import { Component } from '@angular/core';
+import { forkJoin, of, tap, finalize } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { AutoSubscribe } from 'src/app/core/decorators/unsubscribe';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
-import { FeedService } from 'src/app/shared/services/feed.service';
+import { FeedService } from 'src/app/core/services/feed.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
 
 interface tabs {
   feed: GlobalArticle[];
@@ -24,7 +25,8 @@ export class FeedComponent  {
   selectedIndex: number = 0;
   constructor(
     private feedService: FeedService,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private loaderService: LoaderService,
   ) {}
 
 
@@ -34,6 +36,7 @@ export class FeedComponent  {
 
   @AutoSubscribe()
   getHttp() {
+    this.loaderService.increaseLoader()
    return forkJoin({
       feed$: this.authservice.isAuthenficated()
         ? this.feedService.getYourFeed()
@@ -47,6 +50,8 @@ export class FeedComponent  {
       this.feed && this.tabs.push({ feed: this.feed, label: 'Your Feed' });
       this.tabs.push({ feed: this.globalFeeds, label: 'Global Feed' });
       this.loading = false;
+    }), finalize( () => {
+      this.loaderService.decreaseLoader()
     }))
     }
 

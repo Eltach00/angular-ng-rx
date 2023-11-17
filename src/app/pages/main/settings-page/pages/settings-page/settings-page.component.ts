@@ -6,7 +6,7 @@ import { selectAuth } from 'src/app/store/submit.select';
 import { AuthState } from 'src/app/shared/models/register.state';
 import { User } from 'src/app/shared/models/register/succes.register.response';
 import { AuthAction } from 'src/app/store/register.action';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-settings-page',
   templateUrl: './settings-page.component.html',

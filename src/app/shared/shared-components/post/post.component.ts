@@ -1,10 +1,7 @@
 import {
-  ChangeDetectorRef,
   Component,
   Input,
-  OnChanges,
   OnInit,
-  SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -12,7 +9,7 @@ import { Store, select } from '@ngrx/store';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 import { ArticleFavorite } from 'src/app/shared/models/feeds/favorite.response';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
-import { FeedService } from 'src/app/shared/services/feed.service';
+import { FeedService } from 'src/app/core/services/feed.service';
 import { selectFeatureUsername } from 'src/app/store/submit.select';
 
 @Component({
@@ -20,7 +17,7 @@ import { selectFeatureUsername } from 'src/app/store/submit.select';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
 })
-export class PostComponent implements OnInit, OnChanges {
+export class PostComponent implements OnInit {
   @Input() post: GlobalArticle | ArticleFavorite;
   disabled = false;
   favorited: boolean;
@@ -32,18 +29,13 @@ export class PostComponent implements OnInit, OnChanges {
     private router: Router,
     private dialog: MatDialog,
     private store: Store,
-    private cd: ChangeDetectorRef
   ) {
-    cd.detach()
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.cd.reattach();
-  }
 
   ngOnInit(): void {
-    this.favoritesCount = this.post.favoritesCount;
-    this.favorited = this.post.favorited;
+    this.favoritesCount = this.post?.favoritesCount;
+    this.favorited = this.post?.favorited;
     this.store.pipe(select(selectFeatureUsername)).subscribe((resp) => {
       this.loggedIn = resp.loggedIn;
     });
@@ -53,7 +45,6 @@ export class PostComponent implements OnInit, OnChanges {
     if (!this.loggedIn) {
       this.router.navigate(['/auth/sign-in']);
     } else {
-      this.cd.reattach();
       this.disabled = true;
       this.dialog.open(LoaderComponent, {
         width: '250px',

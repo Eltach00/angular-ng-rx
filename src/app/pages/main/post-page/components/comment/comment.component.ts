@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Comment } from 'src/app/shared/models/feeds/comment.response';
-import { FeedService } from 'src/app/shared/services/feed.service';
+import { FeedService } from 'src/app/core/services/feed.service';
 
 @Component({
   selector: 'app-comment',

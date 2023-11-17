@@ -1,14 +1,14 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title class="title"> {{ post.title }} </mat-card-title>
+    <mat-card-title class="title"> {{ post?.title }} </mat-card-title>
     <mat-card-subtitle class="subtitle">
       <div class="avatar">
         <div class="img">
-          <img [src]="post.author.image" alt="" />
+          <img [src]="post?.author.image" alt="" />
         </div>
         <div class="author">
-          <p class="username">{{ post.author.username }}</p>
-          <p class="createdAt">{{ post.createdAt | date : "longDate" }}</p>
+          <p class="username">{{ post?.author.username }}</p>
+          <p class="createdAt">{{ post?.createdAt | date : "longDate" }}</p>
         </div>
       </div>
       <div class="buttons" *ngIf="!isPorfilePost; else editContent">
@@ -20,7 +20,7 @@
         >
           <mat-icon inline>star_border</mat-icon>
           <span>
-            {{ following ? "Unfollow" : "Follow" }} {{ post.author.username }}
+            {{ following ? "Unfollow" : "Follow" }} {{ post?.author.username }}
           </span>
         </button>
         <button
@@ -55,7 +55,7 @@
           >
             <mat-icon inline>star_border</mat-icon>
             <span>
-              {{ following ? "Unfollow" : "Follow" }} {{ post.author.username }}
+              {{ following ? "Unfollow" : "Follow" }} {{ post?.author.username }}
             </span>
           </button>
         </div>

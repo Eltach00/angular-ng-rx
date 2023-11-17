@@ -18,7 +18,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { NotFoundPage } from './pages/main/not-found-page/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, LoaderComponent, NotFoundPage],
+  declarations: [AppComponent, LayoutComponent, LoaderComponent, NotFoundPage, LoaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

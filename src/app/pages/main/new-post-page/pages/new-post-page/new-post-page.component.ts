@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { autoSave, autoSaveClear } from 'src/app/shared/decorators/auto-save';
+import { autoSave, autoSaveClear } from 'src/app/core/decorators/auto-save';
 import { PostDto } from 'src/app/shared/models/post.dto';
-import { FeedService } from 'src/app/shared/services/feed.service';
+import { FeedService } from 'src/app/core/services/feed.service';
 
 const key = 'saveForm';
 

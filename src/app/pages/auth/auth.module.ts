@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './auth.routing';
-import { AutoInvalidFocusDirective } from 'src/app/shared/directives/form-focus.directive';
+import { AutoInvalidFocusDirective } from 'src/app/core/directives/form-focus.directive';
 
 @NgModule({
   declarations: [],

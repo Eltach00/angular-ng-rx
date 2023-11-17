@@ -1,6 +1,6 @@
 import { ErrorHandler, Injectable, NgZone } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSnackBarComponent } from '../mat-snack-bar/mat-snack-bar.component';
+import { MatSnackBarComponent } from '../../shared/mat-snack-bar/mat-snack-bar.component';
 
 @Injectable()
 export class ErrorHandlerService implements ErrorHandler {

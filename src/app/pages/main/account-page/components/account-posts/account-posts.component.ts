@@ -1,6 +1,6 @@
 import { delay, forkJoin } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
-import { FeedService } from 'src/app/shared/services/feed.service';
+import { FeedService } from 'src/app/core/services/feed.service';
 import { GlobalArticle } from 'src/app/shared/models/feeds/globalFeed.response';
 
 @Component({
