@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundPage } from './not-found-page/not-found.component';
 
 const routes: Routes = [
   {
@@ -7,7 +8,7 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'new-post/:slug',
+    path: 'new-post',
     loadChildren: () =>
       import('./new-post-page/new-post-page.module').then(
         (m) => m.NewPostPageModule
@@ -30,18 +31,11 @@ const routes: Routes = [
   {
     path: 'post/:slug',
     loadChildren: () =>
-      import('./settings-page/settings-page.module').then(
-        (m) => m.SettingsPageModule
+      import('./post-page/post-page.module').then(
+        (m) => m.PostPageModule
       ),
   },
 
-  {
-    path: '**',
-    loadChildren: () =>
-      import('./not-found-page/not-found-page.module').then(
-        (m) => m.NotFoundPageModule
-      ),
-  },
 ];
 
 @NgModule({

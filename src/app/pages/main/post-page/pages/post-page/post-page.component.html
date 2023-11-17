@@ -1,12 +1,12 @@
-  <app-header-card
+  <app-header-card *ngIf="post"
     [post]="post"
     [isPorfilePost]="isProfilePost"
   ></app-header-card>
 
   <div class="container">
-    <p class="body-text">{{ post.body }}</p>
+    <p class="body-text">{{ post?.body }}</p>
     <mat-chip-listbox aria-label="tags">
-      <mat-chip *ngFor="let tag of post.tagList" color="dark-white" highlighted>
+      <mat-chip *ngFor="let tag of post?.tagList" color="dark-white" highlighted>
         {{ tag }}
       </mat-chip>
     </mat-chip-listbox>
@@ -21,13 +21,13 @@
     *ngIf="loggedIn"
     [accountImage]="profileUrl"
     [profileUsername]="profuleUsername"
-    [slug]="post.slug"
+    [slug]="post?.slug"
     (newComment)="addNewComment($event)"
   ></app-post-comment>
 
   <app-comment
     *ngFor="let item of comments"
     [comment]="item"
-    [slug]="post.slug"
+    [slug]="post?.slug"
     (commentDeleted)="deleteComment($event)"
   ></app-comment>

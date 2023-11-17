@@ -10,14 +10,15 @@ import { LayoutComponent } from './shared/layout/layout.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { materialModules } from './shared/material-modules/material.modules';
-import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 import { AuthReducer } from './store/register.reducer';
-import { TokenInterceptor } from './shared/interceptors/token.interceptor';
+import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { NotFoundPage } from './pages/main/not-found-page/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, LoaderComponent],
+  declarations: [AppComponent, LayoutComponent, LoaderComponent, NotFoundPage],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,7 +26,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
     BrowserAnimationsModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     ...materialModules,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {

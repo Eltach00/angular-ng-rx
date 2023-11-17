@@ -7,9 +7,9 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-import { ErrorResponse } from '../models/error.response';
+import { ErrorResponse } from '../../shared/models/error.response';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSnackBarComponent } from '../mat-snack-bar/mat-snack-bar.component';
+import { MatSnackBarComponent } from '../../shared/mat-snack-bar/mat-snack-bar.component';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

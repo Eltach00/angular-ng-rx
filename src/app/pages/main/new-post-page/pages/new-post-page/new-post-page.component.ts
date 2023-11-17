@@ -27,10 +27,10 @@ export class NewPostPageComponent implements OnInit {
     private router: Router,
     private activateRoute: ActivatedRoute
   ) {
-    this.buildForm();
   }
 
   ngOnInit(): void {
+    this.buildForm();
     this.slug = this.activateRoute.snapshot.params['slug'];
     if (this.slug) {
       this.isEdit = true;
