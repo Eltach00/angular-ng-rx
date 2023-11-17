@@ -4,7 +4,7 @@
     <ng-container *ngIf="!loading">
       <div *ngIf="!isLogIn; else logInType" class="links">
         <a class="link" routerLink="/">Home</a>
-        <a class="link" routerLink="/auth/sign-in">Sign in</a>
+        <a class="link" [routerLink]="['auth', 'sign-in']">Sign in</a>
         <a class="link" routerLink="/auth/register">Sign up</a>
       </div>
       <ng-template #logInType>
